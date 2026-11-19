@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="ky">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ЖарТап — Кыргыздар үчүн таанышуу</title>
+<style>
+:root{--wine:#741f3a;--wine2:#9b3454;--gold:#d8b36a;--cream:#fffaf5;--ink:#2e2024;--muted:#806f72;--line:#f0e4e2}
+*{box-sizing:border-box}body{margin:0;background:var(--cream);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+header{height:70px;display:flex;align-items:center;justify-content:space-between;padding:0 5vw;background:#fff;position:sticky;top:0;z-index:5;border-bottom:1px solid var(--line)}
+.brand{font-size:25px;font-weight:850;color:var(--wine)}.brand span{color:var(--gold)}
+nav{display:flex;gap:22px}nav a{color:#5d4c50;text-decoration:none;font-size:14px;font-weight:650}
+.btn{border:0;border-radius:999px;padding:12px 19px;background:var(--wine);color:white;font-weight:750;cursor:pointer}.btn:hover{background:var(--wine2)}
+.hero{padding:65px 6vw;background:linear-gradient(115deg,#30111f,#741f3a);color:white}.hero-inner{max-width:1100px;margin:auto}
+.eyebrow{color:#f0d69e;font-size:13px;font-weight:800;letter-spacing:1.5px}
+h1{font-size:clamp(36px,6vw,62px);line-height:1.06;max-width:700px;margin:15px 0}
+.hero p{font-size:17px;line-height:1.6;color:#f7e9e9;max-width:590px}
+main{max-width:1100px;margin:auto;padding:45px 22px}.head{display:flex;justify-content:space-between;align-items:end;gap:15px;flex-wrap:wrap}
+h2{margin:0;font-size:27px}.muted{color:var(--muted);font-size:14px;margin-top:7px}
+.filters{display:flex;gap:10px;flex-wrap:wrap;margin:22px 0}
+select{border:1px solid var(--line);background:#fff;border-radius:12px;padding:12px 14px;font:inherit;color:#49373c}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden}
+.photo{height:210px;background:linear-gradient(140deg,#b57d72,#5d354a);display:flex;align-items:center;justify-content:center;color:white;font-size:52px;font-weight:800;overflow:hidden}
+.photo img{width:100%;height:100%;object-fit:cover}.body{padding:16px}.body h3{margin:0 0 5px}.meta{font-size:13px;color:var(--muted)}.body p{font-size:14px;line-height:1.5;min-height:42px}
+.foot{display:flex;justify-content:space-between;align-items:center}.like{border:1px solid #ead9de;background:#fff8fa;color:var(--wine);border-radius:25px;padding:8px 12px;font-weight:700;cursor:pointer}
+.notice{margin-top:30px;padding:18px;background:#f7eee9;border-radius:15px;color:#69565a;font-size:13px;line-height:1.6}
+footer{text-align:center;background:#2d1b22;color:#f7e9e9;padding:28px}
+.backdrop{display:none;position:fixed;inset:0;background:#1b0c12b8;z-index:10;align-items:center;justify-content:center;padding:15px}
+.modal{background:white;border-radius:18px;padding:23px;width:min(100%,480px);max-height:90vh;overflow:auto}
+.modal h2{color:var(--wine);margin-bottom:8px}.modal label{display:block;font-size:13px;font-weight:700;margin:12px 0 5px}
+input,textarea{width:100%;padding:11px;border:1px solid var(--line);border-radius:10px;font:inherit}
+textarea{min-height:75px;resize:vertical}.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.close{float:right;border:0;background:none;font-size:25px;cursor:pointer}
+#preview{width:100%;max-height:180px;object-fit:cover;border-radius:12px;margin-top:8px;display:none}
+.msg{font-size:13px;color:var(--wine);min-height:20px}
+@media(max-width:760px){nav{display:none}.grid{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.grid{grid-template-columns:1fr}.hero{padding:48px 22px}.row{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+ <div class="brand">Жар<span>Тап</span> ♥</div>
+ <nav><a href="#profiles">Профилдер</a><a href="#safety">Коопсуздук</a></nav>
+ <button class="btn" onclick="openModal()">Катталуу</button>
+</header>
+<section class="hero"><div class="hero-inner">
+ <div class="eyebrow">КЫРГЫЗСТАН ҮЧҮН · 18+</div>
+ <h1>Ак никеге өмүрлүк жар тап.</h1>
+ <p>Кыргызстандагы 18 жаштан жогорку, адал никеге жана үй-бүлө курууга ниеттенген адамдар үчүн платформа.</p>
+ <button class="btn" style="background:var(--gold);color:#3b2028" onclick="openModal()">Профиль түзүү →</button>
+</div></section>
+<main>
+<section id="profiles">
+ <div class="head"><div><h2>Профилдер</h2><div class="muted">Үй-бүлө курууга ниеттенген адамдардын үлгү профилдери</div></div></div>
+ <div class="filters">
+  <select id="city" onchange="filterCards()"><option value="all">Бардык аймактар</option><option>Бишкек</option><option>Ош</option><option>Каракол</option><option>Башка</option></select>
+  <select id="goal" onchange="filterCards()"><option value="all">Бардык максаттар</option><option>Үй-бүлө куруу</option></select>
+ </div>
+ <div class="grid" id="cards">
+  <article class="card" data-city="Бишкек" data-goal="Үй-бүлө куруу"><div class="photo">А</div><div class="body"><h3>Айдана, 24</h3><div class="meta">Бишкек · Үй-бүлө куруу</div><p>Китеп окуганды жана тоого чыкканды жактырам.</p><div class="foot"><span class="meta">Үлгү профиль</span><button class="like" onclick="toggleLike(this)">♡ Жакты</button></div></div></article>
+  <article class="card" data-city="Ош" data-goal="Үй-бүлө куруу"><div class="photo" style="background:linear-gradient(140deg,#d6a66d,#795044)">Н</div><div class="body"><h3>Нурбек, 27</h3><div class="meta">Ош · Үй-бүлө куруу</div><p>Саякат, музыка жана жаңы нерселерди үйрөнүү.</p><div class="foot"><span class="meta">Үлгү профиль</span><button class="like" onclick="toggleLike(this)">♡ Жакты</button></div></div></article>
+  <article class="card" data-city="Каракол" data-goal="Үй-бүлө куруу"><div class="photo" style="background:linear-gradient(140deg,#8a9a88,#334f4a)">М</div><div class="body"><h3>Мээрим, 23</h3><div class="meta">Каракол · Үй-бүлө куруу</div><p>Жаратылышты, сүрөт тартууну жакшы көрөм.</p><div class="foot"><span class="meta">Үлгү профиль</span><button class="like" onclick="toggleLike(this)">♡ Жакты</button></div></div></article>
+ </div>
+</section>
+<section id="safety" class="notice"><strong>Коопсуздук маанилүү.</strong> Бул платформа 18 жаштан жогоркуларга гана арналат. Бейтааныш адамдарга дарегиңди, банктык маалыматыңды же сырсөзүңдү бербе. Бул платформа адал никеге жана үй-бүлө курууга ниеттенген 18 жаштан жогорку адамдар үчүн. Азыркы версия — демо: маалымат серверге жөнөтүлбөйт, аккаунт түзүлбөйт жана төлөм алынбайт. Чыныгы ишке киргизүү үчүн сервер, маалымат базасы жана коопсуз жаш текшерүүсү керек.</section>
+</main>
+<footer><strong>ЖарТап ♥</strong><br>Адал никеге ниет кылгандар үчүн · 18+</footer>
+<div class="backdrop" id="modal" role="dialog" aria-modal="true">
+ <div class="modal">
+  <button class="close" onclick="closeModal()" aria-label="Жабуу">×</button>
+  <h2>Профиль түзүү</h2><p class="muted">18 жаштан жогоркулар үчүн. Бул демо маалымат сайтка жүктөлбөйт жана сакталбайт.</p>
+  <form id="profileForm">
+   <label for="name">Атың</label><input id="name" maxlength="30" required placeholder="Атың">
+   <div class="row"><div><label for="age">Жашың</label><input id="age" type="number" min="18" max="99" required placeholder="18ден жогору"></div>
+   <div><label for="newCity">Шаар</label><select id="newCity" required><option value="">Танда</option><option>Бишкек</option><option>Ош</option><option>Каракол</option><option>Башка</option></select></div></div>
+   <label for="newGoal">Ниети</label><select id="newGoal" style="width:100%" required><option value="">Танда</option><option>Үй-бүлө куруу</option></select>
+   <label for="bio">Өзүң жөнүндө</label><textarea id="bio" maxlength="180" placeholder="Кызыкчылыктарың..."></textarea>
+   <label for="photo">Сүрөт (милдеттүү эмес)</label><input id="photo" type="file" accept="image/*"><img id="preview" alt="Сүрөттүн алдын ала көрүнүшү">
+   <p class="msg" id="msg" aria-live="polite"></p>
+   <button class="btn" type="submit" style="width:100%">Демо профиль кошуу</button>
+  </form>
+ </div>
+</div>
+<script>
+const modal=document.getElementById('modal');
+function openModal(){modal.style.display='flex'}
+function closeModal(){modal.style.display='none'}
+modal.addEventListener('click',e=>{if(e.target===modal)closeModal()});
+function toggleLike(btn){btn.textContent=btn.textContent.includes('♡')?'♥ Жакты':'♡ Жакты'}
+function filterCards(){
+ const city=document.getElementById('city').value,goal=document.getElementById('goal').value;
+ document.querySelectorAll('#cards .card').forEach(card=>{
+  card.style.display=(city==='all'||card.dataset.city===city)&&(goal==='all'||card.dataset.goal===goal)?'':'none';
+ });
+}
+const photoInput=document.getElementById('photo'),preview=document.getElementById('preview');
+photoInput.addEventListener('change',()=>{
+ const file=photoInput.files[0];
+ if(file){if(!file.type.startsWith('image/')){photoInput.value='';return}
+ preview.src=URL.createObjectURL(file);preview.style.display='block'}else{preview.style.display='none'}
+});
+document.getElementById('profileForm').addEventListener('submit',e=>{
+ e.preventDefault();
+ const name=document.getElementById('name').value.trim(),age=Number(document.getElementById('age').value);
+ const city=document.getElementById('newCity').value,goal=document.getElementById('newGoal').value;
+ const bio=document.getElementById('bio').value.trim(),file=photoInput.files[0];
+ const msg=document.getElementById('msg');
+ if(age<18){msg.textContent='ЖарТап 18 жаштан жогоркуларга гана арналган.';return}
+ const card=document.createElement('article');card.className='card';card.dataset.city=city;card.dataset.goal=goal;
+ const photo=document.createElement('div');photo.className='photo';
+ if(file){const img=document.createElement('img');img.src=URL.createObjectURL(file);img.alt='Профиль сүрөтү';photo.appendChild(img)}
+ else photo.textContent=name.charAt(0).toUpperCase();
+ const body=document.createElement('div');body.className='body';
+ const h=document.createElement('h3');h.textContent=name+', '+age;
+ const meta=document.createElement('div');meta.className='meta';meta.textContent=city+' · '+goal;
+ const p=document.createElement('p');p.textContent=bio||'Азырынча маалымат жок.';
+ const foot=document.createElement('div');foot.className='foot';
+ const label=document.createElement('span');label.className='meta';label.textContent='Демо профиль';
+ const like=document.createElement('button');like.className='like';like.textContent='♡ Жакты';like.onclick=()=>toggleLike(like);
+ foot.append(label,like);body.append(h,meta,p,foot);card.append(photo,body);
+ document.getElementById('cards').prepend(card);
+ document.getElementById('profileForm').reset();preview.style.display='none';closeModal();filterCards();
+});
+</script>
+</body></html>
