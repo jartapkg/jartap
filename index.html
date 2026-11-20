@@ -2,171 +2,178 @@
 <!DOCTYPE html>
 <html lang="ky">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ЖарТап — Ак нике</title>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f5f7f5;
-      color: #24352a;
-    }
-    header {
-      background: #174d32;
-      color: white;
-      padding: 22px;
-      text-align: center;
-    }
-    main {
-      max-width: 480px;
-      margin: 35px auto;
-      padding: 24px;
-      background: white;
-      border-radius: 14px;
-      box-shadow: 0 3px 15px #0001;
-    }
-    h2 { text-align: center; }
-    input {
-      width: 100%;
-      box-sizing: border-box;
-      padding: 13px;
-      margin: 8px 0;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-    }
-    button {
-      width: 100%;
-      padding: 14px;
-      margin-top: 10px;
-      background: #17633c;
-      color: white;
-      border: 0;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 16px;
-    }
-    button:hover { background: #10472b; }
-    #message {
-      margin-top: 15px;
-      text-align: center;
-      overflow-wrap: anywhere;
-    }
-    .note {
-      font-size: 13px;
-      color: #666;
-      text-align: center;
-      line-height: 1.5;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ЖарТап — Ак нике</title>
+<style>
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f5f7f5;
+  color: #24352a;
+}
+header {
+  background: #174d32;
+  color: white;
+  text-align: center;
+  padding: 35px 20px;
+}
+header h1 { font-size: 42px; margin: 0; }
+header p { font-size: 18px; }
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  padding: 15px;
+  background: white;
+  flex-wrap: wrap;
+}
+nav button {
+  border: 1px solid #17633c;
+  background: white;
+  color: #17633c;
+  padding: 9px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+nav button.active {
+  background: #17633c;
+  color: white;
+}
+main {
+  max-width: 850px;
+  margin: 35px auto;
+  padding: 20px;
+}
+.card {
+  background: white;
+  padding: 30px;
+  border-radius: 14px;
+  box-shadow: 0 3px 15px #0001;
+  margin-bottom: 20px;
+  line-height: 1.7;
+}
+.card h2 { color: #17633c; }
+footer {
+  background: #174d32;
+  color: white;
+  text-align: center;
+  padding: 22px;
+  line-height: 1.6;
+}
+</style>
 </head>
 <body>
 
 <header>
   <h1>ЖарТап</h1>
-  <p>Ак никеге өмүрлүк жар табуу</p>
-  <b>18 жаштан жогоркулар үчүн</b>
+  <p id="subtitle">Ак нике максатындагы таанышуу платформасы</p>
 </header>
 
+<nav aria-label="Language">
+  <button class="active" onclick="setLanguage('ky')">Кыргызча</button>
+  <button onclick="setLanguage('ru')">Русский</button>
+  <button onclick="setLanguage('en')">English</button>
+</nav>
+
 <main>
-  <h2>Катталуу</h2>
+  <section class="card">
+    <h2 id="welcome">ЖарТапка кош келиңиз!</h2>
+    <p id="intro">
+      ЖарТап — үй-бүлө куруу жана ак нике максатындагы
+      таанышуу жөнүндө маалымат берүүчү платформа.
+    </p>
+  </section>
 
-  <form id="signupForm">
-    <input id="age" type="number" min="18" max="120"
-      placeholder="Жашыңыз" required>
+  <section class="card">
+    <h2 id="aboutTitle">Биз жөнүндө</h2>
+    <p id="aboutText">
+      Биздин максат — үй-бүлөлүк баалуулуктарды,
+      урматтоону жана жоопкерчиликти даңазалоо.
+    </p>
+  </section>
 
-    <input id="email" type="email"
-      placeholder="Электрондук почта" required>
+  <section class="card">
+    <h2 id="safetyTitle">Коопсуздук</h2>
+    <p id="safetyText">
+      Платформа чоңдорго гана арналган. Катталуу функциялары
+      жаш куракты ишенимдүү текшерүү жана коопсуздук
+      чаралары даяр болгондо гана ишке киргизилет.
+    </p>
+  </section>
 
-    <input id="password" type="password"
-      placeholder="Сырсөз (кеминде 8 белги)" minlength="8" required>
-
-    <button type="submit">Катталуу</button>
-  </form>
-
-  <hr>
-
-  <h2>Аккаунтка кирүү</h2>
-
-  <form id="loginForm">
-    <input id="loginEmail" type="email"
-      placeholder="Электрондук почта" required>
-
-    <input id="loginPassword" type="password"
-      placeholder="Сырсөз" required>
-
-    <button type="submit">Кирүү</button>
-  </form>
-
-  <p id="message"></p>
-
-  <p class="note">
-    Бул платформа 18 жаштан жогоркуларга арналган.
-    Жаш куракты текшерүү катталуу формасы менен гана чектелбеши керек.
-  </p>
+  <section class="card">
+    <h2 id="contactTitle">Байланыш</h2>
+    <p id="contactText">
+      Сайт боюнча суроолор жана сунуштар үчүн байланыш
+      маалыматы кийин ушул жерге кошулат.
+    </p>
+  </section>
 </main>
 
+<footer>
+  <p id="footerText">ЖарТап — үй-бүлөлүк баалуулуктар жана ак нике.</p>
+  <p>© 2026 ЖарТап</p>
+</footer>
+
 <script>
-const SUPABASE_URL = "https://zowpiukktltjnnnitqyc.supabase.co";
-const SUPABASE_KEY = "sb_publishable_SSuzDR4jpJpo2sOsGv1tsg_lDgVgTvR";
-
-const client = window.supabase.createClient(
-  SUPABASE_URL,
-  SUPABASE_KEY
-);
-
-const message = document.getElementById("message");
-
-document.getElementById("signupForm").addEventListener("submit", async (e) => {
-  e.preventDefault();
-
-  const age = Number(document.getElementById("age").value);
-  const email = document.getElementById("email").value.trim();
-  const password = document.getElementById("password").value;
-
-  if (age < 18) {
-    message.textContent = "Катталуу үчүн 18 жаштан жогору болуу керек.";
-    return;
+const translations = {
+  ky: {
+    subtitle: "Ак нике максатындагы таанышуу платформасы",
+    welcome: "ЖарТапка кош келиңиз!",
+    intro: "ЖарТап — үй-бүлө куруу жана ак нике максатындагы таанышуу жөнүндө маалымат берүүчү платформа.",
+    aboutTitle: "Биз жөнүндө",
+    aboutText: "Биздин максат — үй-бүлөлүк баалуулуктарды, урматтоону жана жоопкерчиликти даңазалоо.",
+    safetyTitle: "Коопсуздук",
+    safetyText: "Платформа чоңдорго гана арналган. Катталуу функциялары жаш куракты ишенимдүү текшерүү жана коопсуздук чаралары даяр болгондо гана ишке киргизилет.",
+    contactTitle: "Байланыш",
+    contactText: "Сайт боюнча суроолор жана сунуштар үчүн байланыш маалыматы кийин ушул жерге кошулат.",
+    footerText: "ЖарТап — үй-бүлөлүк баалуулуктар жана ак нике."
+  },
+  ru: {
+    subtitle: "Платформа знакомств с целью создания семьи",
+    welcome: "Добро пожаловать в ЖарТап!",
+    intro: "ЖарТап — информационная платформа для людей, заинтересованных в создании семьи и браке.",
+    aboutTitle: "О нас",
+    aboutText: "Наша цель — поддерживать семейные ценности, уважение и ответственность.",
+    safetyTitle: "Безопасность",
+    safetyText: "Платформа предназначена только для взрослых. Регистрация будет доступна после внедрения надежной проверки возраста и мер безопасности.",
+    contactTitle: "Контакты",
+    contactText: "Контактная информация для вопросов и предложений будет добавлена позже.",
+    footerText: "ЖарТап — семейные ценности и брак."
+  },
+  en: {
+    subtitle: "A platform focused on marriage and family",
+    welcome: "Welcome to Jartap!",
+    intro: "Jartap is an informational platform for people interested in marriage and building a family.",
+    aboutTitle: "About us",
+    aboutText: "Our goal is to promote family values, respect, and responsibility.",
+    safetyTitle: "Safety",
+    safetyText: "The platform is intended for adults only. Registration will be enabled only after reliable age verification and safety measures are implemented.",
+    contactTitle: "Contact",
+    contactText: "Contact details for questions and suggestions will be added here later.",
+    footerText: "Jartap — family values and marriage."
   }
+};
 
-  message.textContent = "Катталуу жүрүп жатат...";
+function setLanguage(lang) {
+  const content = translations[lang];
+  document.documentElement.lang = lang;
 
-  const { data, error } = await client.auth.signUp({
-    email,
-    password,
-    options: {
-      data: { age }
-    }
+  Object.keys(content).forEach(id => {
+    document.getElementById(id).textContent = content[id];
   });
 
-  if (error) {
-    message.textContent = "Ката: " + error.message;
-  } else {
-    message.textContent =
-      "Катталуу сурамы кабыл алынды. Электрондук почтаңызды текшериңиз.";
-  }
-});
-
-document.getElementById("loginForm").addEventListener("submit", async (e) => {
-  e.preventDefault();
-
-  const email = document.getElementById("loginEmail").value.trim();
-  const password = document.getElementById("loginPassword").value;
-
-  message.textContent = "Кирүү текшерилип жатат...";
-
-  const { data, error } = await client.auth.signInWithPassword({
-    email,
-    password
+  document.querySelectorAll("nav button").forEach(button => {
+    button.classList.toggle(
+      "active",
+      button.textContent.trim() ===
+      ({ky: "Кыргызча", ru: "Русский", en: "English"}[lang])
+    );
   });
-
-  if (error) {
-    message.textContent = "Ката: " + error.message;
-  } else {
-    message.textContent = "Аккаунтка ийгиликтүү кирдиңиз!";
-  }
-});
+}
 </script>
 
 </body>
