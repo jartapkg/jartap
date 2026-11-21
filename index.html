@@ -9,7 +9,6 @@
 
 <style>
 * { box-sizing: border-box; }
-
 html { scroll-behavior: smooth; }
 
 body {
@@ -174,7 +173,7 @@ header::before {
   box-shadow: 0 8px 30px #d9a52d88;
 }
 
-/* Чырмалышкан алтын шакектер */
+/* Алтын шакектердин сүрөтү */
 
 .hero-art {
   min-height: 390px;
@@ -190,39 +189,11 @@ header::before {
   animation: ringGlow 4s ease-in-out infinite;
 }
 
-.rings svg {
+.rings img {
   width: 100%;
   height: auto;
   display: block;
-  overflow: visible;
-}
-
-.ring-shadow {
-  fill: none;
-  stroke: #80500c;
-  stroke-width: 25;
-  stroke-linecap: round;
-}
-
-.ring-main {
-  fill: none;
-  stroke: url(#goldGradient);
-  stroke-width: 18;
-  stroke-linecap: round;
-  filter: url(#goldShadow);
-}
-
-.ring-shine {
-  fill: none;
-  stroke: #fff7c9;
-  stroke-width: 2.5;
-  stroke-linecap: round;
-  opacity: .85;
-}
-
-.sparkle {
-  fill: #fff8c9;
-  filter: url(#sparkleGlow);
+  object-fit: contain;
 }
 
 @keyframes ringGlow {
@@ -411,95 +382,9 @@ footer {
 
     <div class="hero-art">
       <div class="rings">
-        <svg viewBox="0 0 410 290"
-             xmlns="http://www.w3.org/2000/svg"
-             role="img"
-             aria-label="Чырмалышкан алтын нике шакектери">
-
-          <defs>
-            <linearGradient id="goldGradient"
-              x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#fffbdc"/>
-              <stop offset="18%" stop-color="#f7d66e"/>
-              <stop offset="38%" stop-color="#b8790b"/>
-              <stop offset="56%" stop-color="#fff4b0"/>
-              <stop offset="76%" stop-color="#c58b20"/>
-              <stop offset="100%" stop-color="#fff8d0"/>
-            </linearGradient>
-
-            <filter id="goldShadow" x="-40%" y="-40%"
-                    width="180%" height="180%">
-              <feGaussianBlur stdDeviation="2.5" result="blur"/>
-              <feMerge>
-                <feMergeNode in="blur"/>
-                <feMergeNode in="SourceGraphic"/>
-              </feMerge>
-            </filter>
-
-            <filter id="sparkleGlow">
-              <feGaussianBlur stdDeviation="4" result="glow"/>
-              <feMerge>
-                <feMergeNode in="glow"/>
-                <feMergeNode in="SourceGraphic"/>
-              </feMerge>
-            </filter>
-          </defs>
-
-          <!-- Сол жактагы шакек -->
-          <g transform="rotate(-25 150 150)">
-            <ellipse class="ring-shadow"
-                     cx="150" cy="150" rx="105" ry="62"/>
-            <ellipse class="ring-main"
-                     cx="150" cy="150" rx="105" ry="62"/>
-            <path class="ring-shine"
-                  d="M 68 110 A 105 62 0 0 1 125 89"/>
-          </g>
-
-          <!-- Оң жактагы шакек -->
-          <g transform="rotate(25 260 150)">
-            <ellipse class="ring-shadow"
-                     cx="260" cy="150" rx="105" ry="62"/>
-            <ellipse class="ring-main"
-                     cx="260" cy="150" rx="105" ry="62"/>
-            <path class="ring-shine"
-                  d="M 286 91 A 105 62 0 0 1 347 116"/>
-          </g>
-
-          <!-- Үстүңкү кесилиш: оң шакек артта калат -->
-          <path d="M 189.16 84.07
-                   A 105 62 25 0 1 223.24 78.41"
-                fill="none" stroke="#063820"
-                stroke-width="27" stroke-linecap="round"/>
-
-          <path class="ring-shadow"
-                d="M 186.76 78.41
-                   A 105 62 -25 0 1 220.84 84.07"/>
-
-          <path class="ring-main"
-                d="M 186.76 78.41
-                   A 105 62 -25 0 1 220.84 84.07"/>
-
-          <!-- Астыңкы кесилиш: сол шакек артта калат -->
-          <path d="M 220.84 175.93
-                   A 105 62 -25 0 1 186.76 200.83"
-                fill="none" stroke="#063820"
-                stroke-width="27" stroke-linecap="round"/>
-
-          <path class="ring-shadow"
-                d="M 223.24 200.83
-                   A 105 62 25 0 1 189.16 175.93"/>
-
-          <path class="ring-main"
-                d="M 223.24 200.83
-                   A 105 62 25 0 1 189.16 175.93"/>
-
-          <!-- Жарык чагылуулары -->
-          <circle class="sparkle" cx="75" cy="62" r="4"/>
-          <circle class="sparkle" cx="345" cy="55" r="5"/>
-          <circle class="sparkle" cx="205" cy="24" r="3"/>
-          <circle class="sparkle" cx="355" cy="225" r="3"/>
-
-        </svg>
+        <img
+          src="rings.png"
+          alt="Чырмалышкан алтын нике шакектери">
       </div>
     </div>
 
