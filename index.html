@@ -12,7 +12,8 @@
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:90px}
 body{margin:0;font-family:Georgia,"Times New Roman",serif;background:var(--green);color:var(--cream)}
-a{color:inherit}button{font:inherit}
+a{color:inherit}
+button{font:inherit}
 header{min-height:100vh;position:relative;overflow:hidden;background:radial-gradient(ellipse at 80% 45%,#1e5938 0%,transparent 38%),radial-gradient(ellipse at 10% 90%,#17452d 0%,transparent 35%),linear-gradient(130deg,#00150c,#073521 55%,#00170d)}
 header:before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.13;background-image:radial-gradient(#f5d98c 1px,transparent 1px);background-size:42px 42px}
 .topbar{position:relative;z-index:10;max-width:1300px;margin:auto;padding:22px 35px;display:flex;align-items:center;justify-content:space-between;gap:25px;border-bottom:1px solid #d9b45a33}
@@ -20,7 +21,7 @@ header:before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.
 .brand-icon{font-size:43px;filter:drop-shadow(0 0 12px #e9bd59)}
 .brand h1{margin:0;color:var(--gold);font-size:34px;letter-spacing:2px}
 .brand p{margin:4px 0 0;color:var(--gold2);font-size:12px;letter-spacing:2px}
-.nav{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.nav{display:flex;align-items:center;gap:17px;flex-wrap:wrap}
 .nav a{color:var(--cream);text-decoration:none;font-size:14px;transition:.25s}
 .nav a:hover{color:var(--gold)}
 .languages{display:flex;gap:6px}
@@ -76,6 +77,11 @@ main{max-width:1150px;margin:auto;padding:0 25px 75px}
 .review-card{min-height:190px;text-align:center}
 .review-card .card-icon{color:var(--gold)}
 .review-label{display:inline-block;margin-top:18px;padding:7px 13px;border:1px solid #d9b45a66;border-radius:20px;color:var(--gold2);font-size:12px}
+.feedback-panel{padding:40px;border:1px solid #d2a84977;border-radius:20px;background:radial-gradient(ellipse at top right,#23563855,transparent 55%),linear-gradient(135deg,#103e29,#052416);text-align:center}
+.feedback-panel .feedback-icon{font-size:48px;color:var(--gold)}
+.feedback-panel h2{color:var(--gold);font-size:30px;margin:15px 0}
+.feedback-panel p{max-width:760px;margin:12px auto;color:var(--cream);font-size:16px;line-height:1.9}
+.feedback-panel .notice{text-align:left}
 details{margin:13px 0;padding:19px 22px;background:#0b3522;border:1px solid #b88e4355;border-radius:12px}
 summary{color:var(--gold2);cursor:pointer;font-size:17px;font-weight:bold}
 details p{color:var(--muted);line-height:1.8;margin-bottom:0}
@@ -92,7 +98,7 @@ footer a{color:var(--gold2);text-decoration:none}
 .hero-buttons{justify-content:center}.hero-art{min-height:270px}.rings{width:min(100%,370px)}
 .trust-strip,.cards,.steps{grid-template-columns:1fr}.trust-strip{margin:15px 20px 45px}
 .trust-item{border-right:0;border-bottom:1px solid #c49b4555}.trust-item:last-child{border-bottom:0}
-.section{margin:60px 0}.about-box,.privacy-panel{padding:25px}
+.section{margin:60px 0}.about-box,.privacy-panel,.feedback-panel{padding:25px}
 }
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;scroll-behavior:auto!important;transition:none!important}}
 </style>
@@ -105,6 +111,7 @@ footer a{color:var(--gold2);text-decoration:none}
 <a href="#about" data-key="navAbout">Биз жөнүндө</a>
 <a href="#how" data-key="navHow">Баалуулуктар</a>
 <a href="#reviews" data-key="navReviews">Пикирлер</a>
+<a href="#feedback" data-key="navFeedback">Пикир билдирүү</a>
 <a href="#privacy" data-key="navPrivacy">Коопсуздук</a>
 <a href="#faq" data-key="navFaq">Суроолор</a>
 </nav>
@@ -139,6 +146,7 @@ footer a{color:var(--gold2);text-decoration:none}
 <div class="symbol">✧</div><h2 id="aboutTitle">ЖарТап жөнүндө</h2>
 <p id="aboutText">ЖарТап — үй-бүлөлүк баалуулуктарды, ишенимди, жоопкерчиликти жана өз ара урматтоону даңазалаган маалыматтык платформа. Биздин негизги максат — жакшы ниетти жана туура баалуулуктарды жайылтуу.</p>
 </section>
+
 <section class="section" id="how">
 <div class="section-heading"><div class="eyebrow" id="valuesEyebrow">БИЗДИН БАГЫТ</div><h2 id="valuesTitle">ЖарТаптын негизги баалуулуктары</h2><p id="valuesIntro">Ишеним, урмат жана жоопкерчилик — бекем үй-бүлөнүн маанилүү негиздери.</p></div>
 <div class="cards">
@@ -147,6 +155,7 @@ footer a{color:var(--gold2);text-decoration:none}
 <div class="card"><div class="card-icon">🌿</div><h3 id="value3Title">Үй-бүлөлүк баалуулуктар</h3><p id="value3Text">Ынтымакты, түшүнүшүүнү жана жакшылыкты колдоо.</p></div>
 </div>
 </section>
+
 <section class="section">
 <div class="section-heading"><div class="eyebrow" id="principlesEyebrow">МААНИЛҮҮ ПРИНЦИПТЕР</div><h2 id="howTitle">Ишенимге негизделген мамиле</h2><p id="howIntro">Туура мамиле урматтоодон, түшүнүшүүдөн жана өз ара макулдуктан башталат.</p></div>
 <div class="steps">
@@ -160,10 +169,19 @@ footer a{color:var(--gold2);text-decoration:none}
 <div class="section-heading"><div class="eyebrow" id="reviewsEyebrow">КОЛДОНУУЧУЛАРДЫН ОЮ</div><h2 id="reviewsTitle">Пикирлер</h2><p id="reviewsIntro">ЖарТап тууралуу пикирлер бул жерде жарыяланат.</p></div>
 <p class="review-note" id="reviewsNote">Азырынча жарыялоого уруксат берилген жана текшерилген пикирлер жок. Чыныгы пикирлер келгенде гана бул бөлүм жаңыланат.</p>
 <div class="cards">
-<div class="card review-card"><div class="card-icon">✧</div><h3 id="review1Title">Сиздин пикириңиз маанилүү</h3><p id="review1Text">Бул орун келечекте текшерилген колдонуучулардын чыныгы пикирлери үчүн каралган.</p><span class="review-label" id="reviewLabel1">Пикирлер кабыл алынууда эмес</span></div>
+<div class="card review-card"><div class="card-icon">✧</div><h3 id="review1Title">Сиздин пикириңиз маанилүү</h3><p id="review1Text">Бул орун келечекте текшерилген колдонуучулардын чыныгы пикирлери үчүн каралган.</p><span class="review-label" id="reviewLabel1">Пикирлер азырынча жарыяланган жок</span></div>
 <div class="card review-card"><div class="card-icon">♡</div><h3 id="review2Title">Ишеним жана урмат</h3><p id="review2Text">Биз чынчылдыкты, купуялуулукту жана ар бир адамдын тандоосун сыйлайбыз.</p><span class="review-label" id="reviewLabel2">ЖарТаптын баалуулугу</span></div>
 <div class="card review-card"><div class="card-icon">💍</div><h3 id="review3Title">ЖарТап</h3><p id="review3Text">Ак нике, ишеним жана үй-бүлөлүк баалуулуктар.</p><span class="review-label" id="reviewLabel3">Маалыматтык платформа</span></div>
 </div>
+</section>
+
+<section class="section feedback-panel" id="feedback">
+<div class="feedback-icon">✉</div>
+<div class="eyebrow" id="feedbackEyebrow">СИЗДИН ОЮҢУЗ МААНИЛҮҮ</div>
+<h2 id="feedbackTitle">Пикир билдирүү</h2>
+<p id="feedbackText">ЖарТапты жакшыртуу үчүн сунуштар жана ой-пикирлер маанилүү. Бул бөлүм келечекте пикирлерди кабыл алуу тартиби жөнүндө маалымат берүү үчүн арналган.</p>
+<p id="feedbackText2">Сиздин оюңуз биз үчүн баалуу. Чыныгы пикирлерди кабыл алуу мүмкүнчүлүгү коопсуздук жана купуялык шарттары даяр болгондон кийин гана каралат.</p>
+<div class="notice" id="feedbackNotice">Эскертүү: Азырынча бул сайт аркылуу пикир жөнөтүү же жеке маалымат калтыруу функциясы жок.</div>
 </section>
 
 <section class="section privacy-panel" id="privacy">
@@ -172,6 +190,7 @@ footer a{color:var(--gold2);text-decoration:none}
 <p id="privacyText2">Келечекте кызмат ишке киргизилсе, ал чоңдор үчүн гана каралып, жашты текшерүү, купуялыкты сактоо жана коопсуздук талаптары алдын ала даярдалышы зарыл.</p>
 <div class="notice" id="notice">Эскертүү: ЖарТап азыр маалыматтык сайт болуп саналат. Катталуу, анкета толтуруу жана жеке маалымат жөнөтүү функциялары иштетилген эмес.</div>
 </section>
+
 <section class="section">
 <div class="section-heading"><div class="eyebrow" id="futureEyebrow">КЕЛЕЧЕККЕ КАРАЙ</div><h2 id="futureTitle">Келечектеги мүмкүнчүлүктөр</h2><p id="futureIntro">Келечектеги кызматтын шарттары жана коопсуздук талаптары аныкталгандан кийин гана жаңы функциялар каралат.</p></div>
 <div class="cards">
@@ -180,6 +199,7 @@ footer a{color:var(--gold2);text-decoration:none}
 <div class="card"><div class="card-icon">🌍</div><h3 id="future3Title">Үч тил</h3><p id="future3Text">Кыргызча, орусча жана англисче маалымат берүү.</p></div>
 </div>
 </section>
+
 <section class="section" id="faq">
 <div class="section-heading"><div class="eyebrow" id="faqEyebrow">ЖАРТАП ЖӨНҮНДӨ</div><h2 id="faqTitle">Көп берилүүчү суроолор</h2><p id="faqIntro">Көпчүлүк кызыккан суроолорго жооптор.</p></div>
 <details><summary id="q1">ЖарТапта катталуу иштейби?</summary><p id="a1">Жок. Азыр сайт маалыматтык режимде. Катталуу функциясы иштетилген эмес.</p></details>
@@ -188,6 +208,7 @@ footer a{color:var(--gold2);text-decoration:none}
 <details><summary id="q4">Сайт кайсы тилдерде?</summary><p id="a4">Кыргызча, орусча жана англисче тилдер бар.</p></details>
 </section>
 </main>
+
 <footer>
 <div class="footer-brand">💍 ЖарТап</div>
 <p id="footerText">Ак нике — ишеним, урмат жана жаркын келечек.</p>
@@ -195,53 +216,62 @@ footer a{color:var(--gold2);text-decoration:none}
 <p>© 2026 ЖарТап</p>
 <a href="#home" class="back-top" id="backTop">Жогору кайтуу ↑</a>
 </footer>
+
 <script>
 const translations={
 ky:{
-tagline:"АК НИКЕ — ЖАРКЫН КЕЛЕЧЕК",navAbout:"Биз жөнүндө",navHow:"Баалуулуктар",navReviews:"Пикирлер",navPrivacy:"Коопсуздук",navFaq:"Суроолор",
+tagline:"АК НИКЕ — ЖАРКЫН КЕЛЕЧЕК",navAbout:"Биз жөнүндө",navHow:"Баалуулуктар",navReviews:"Пикирлер",navFeedback:"Пикир билдирүү",navPrivacy:"Коопсуздук",navFaq:"Суроолор",
 eyebrow:"ИШЕНИМ • УРМАТ • ҮЙ-БҮЛӨ",headline:"Ак нике — бакытка карай маанилүү кадам",description:"Үй-бүлөлүк баалуулуктарды, чынчылдыкты жана өз ара урматтоону даңазалаган платформа.",aboutButton:"Биз жөнүндө →",safetyButton:"Коопсуздук",
 trust1Title:"Ишеним",trust1Text:"Ачыктык жана чынчылдык.",trust2Title:"Урматтоо",trust2Text:"Ар бир адамдын тандоосун сыйлоо.",trust3Title:"Үй-бүлө",trust3Text:"Жакшы баалуулуктарды колдоо.",
 aboutTitle:"ЖарТап жөнүндө",aboutText:"ЖарТап — үй-бүлөлүк баалуулуктарды, ишенимди, жоопкерчиликти жана өз ара урматтоону даңазалаган маалыматтык платформа. Биздин негизги максат — жакшы ниетти жана туура баалуулуктарды жайылтуу.",
 valuesEyebrow:"БИЗДИН БАГЫТ",valuesTitle:"ЖарТаптын негизги баалуулуктары",valuesIntro:"Ишеним, урмат жана жоопкерчилик — бекем үй-бүлөнүн маанилүү негиздери.",
 value1Title:"Өз ара урмат",value1Text:"Ар бир адамдын пикирин, тандоосун жана жеке чек арасын сыйлоо.",value2Title:"Чынчылдык",value2Text:"Ачык-айкындык жана жоопкерчиликтүү мамиле.",value3Title:"Үй-бүлөлүк баалуулуктар",value3Text:"Ынтымакты, түшүнүшүүнү жана жакшылыкты колдоо.",
 principlesEyebrow:"МААНИЛҮҮ ПРИНЦИПТЕР",howTitle:"Ишенимге негизделген мамиле",howIntro:"Туура мамиле урматтоодон, түшүнүшүүдөн жана өз ара макулдуктан башталат.",step1Title:"Урматтоо",step1Text:"Ар бир адамдын жеке пикирин жана чечимин сыйлоо.",step2Title:"Түшүнүшүү",step2Text:"Маанилүү чечимдерди эки тараптын эркин макулдугу менен кабыл алуу.",step3Title:"Жоопкерчилик",step3Text:"Сөзгө жана ишке жоопкерчилик менен мамиле кылуу.",
-reviewsEyebrow:"КОЛДОНУУЧУЛАРДЫН ОЮ",reviewsTitle:"Пикирлер",reviewsIntro:"ЖарТап тууралуу пикирлер бул жерде жарыяланат.",reviewsNote:"Азырынча жарыялоого уруксат берилген жана текшерилген пикирлер жок. Чыныгы пикирлер келгенде гана бул бөлүм жаңыланат.",review1Title:"Сиздин пикириңиз маанилүү",review1Text:"Бул орун келечекте текшерилген колдонуучулардын чыныгы пикирлери үчүн каралган.",review2Title:"Ишеним жана урмат",review2Text:"Биз чынчылдыкты, купуялуулукту жана ар бир адамдын тандоосун сыйлайбыз.",review3Title:"ЖарТап",review3Text:"Ак нике, ишеним жана үй-бүлөлүк баалуулуктар.",reviewLabel1:"Пикирлер кабыл алынууда эмес",reviewLabel2:"ЖарТаптын баалуулугу",reviewLabel3:"Маалыматтык платформа",
+reviewsEyebrow:"КОЛДОНУУЧУЛАРДЫН ОЮ",reviewsTitle:"Пикирлер",reviewsIntro:"ЖарТап тууралуу пикирлер бул жерде жарыяланат.",reviewsNote:"Азырынча жарыялоого уруксат берилген жана текшерилген пикирлер жок. Чыныгы пикирлер келгенде гана бул бөлүм жаңыланат.",review1Title:"Сиздин пикириңиз маанилүү",review1Text:"Бул орун келечекте текшерилген колдонуучулардын чыныгы пикирлери үчүн каралган.",review2Title:"Ишеним жана урмат",review2Text:"Биз чынчылдыкты, купуялуулукту жана ар бир адамдын тандоосун сыйлайбыз.",review3Title:"ЖарТап",review3Text:"Ак нике, ишеним жана үй-бүлөлүк баалуулуктар.",reviewLabel1:"Пикирлер азырынча жарыяланган жок",reviewLabel2:"ЖарТаптын баалуулугу",reviewLabel3:"Маалыматтык платформа",
+feedbackEyebrow:"СИЗДИН ОЮҢУЗ МААНИЛҮҮ",feedbackTitle:"Пикир билдирүү",feedbackText:"ЖарТапты жакшыртуу үчүн сунуштар жана ой-пикирлер маанилүү. Бул бөлүм келечекте пикирлерди кабыл алуу тартиби жөнүндө маалымат берүү үчүн арналган.",feedbackText2:"Сиздин оюңуз биз үчүн баалуу. Чыныгы пикирлерди кабыл алуу мүмкүнчүлүгү коопсуздук жана купуялык шарттары даяр болгондон кийин гана каралат.",feedbackNotice:"Эскертүү: Азырынча бул сайт аркылуу пикир жөнөтүү же жеке маалымат калтыруу функциясы жок.",
 privacyEyebrow:"БИЗ ҮЧҮН МААНИЛҮҮ",privacyTitle:"Купуялык жана коопсуздук",privacyText:"Ар бир адамдын жеке маалыматы корголууга тийиш. Телефон номери жана башка байланыш маалыматтары уруксатсыз жарыяланбашы керек.",privacyText2:"Келечекте кызмат ишке киргизилсе, ал чоңдор үчүн гана каралып, жашты текшерүү, купуялыкты сактоо жана коопсуздук талаптары алдын ала даярдалышы зарыл.",notice:"Эскертүү: ЖарТап азыр маалыматтык сайт болуп саналат. Катталуу, анкета толтуруу жана жеке маалымат жөнөтүү функциялары иштетилген эмес.",
 futureEyebrow:"КЕЛЕЧЕККЕ КАРАЙ",futureTitle:"Келечектеги мүмкүнчүлүктөр",futureIntro:"Келечектеги кызматтын шарттары жана коопсуздук талаптары аныкталгандан кийин гана жаңы функциялар каралат.",future1Title:"Жеке маалымат",future1Text:"Керектүү жана ашыкча эмес маалымат принциптерин кармануу.",future2Title:"Маалыматты коргоо",future2Text:"Купуялуулук жана маалымат коопсуздугу биринчи орунда болушу керек.",future3Title:"Үч тил",future3Text:"Кыргызча, орусча жана англисче маалымат берүү.",
 faqEyebrow:"ЖАРТАП ЖӨНҮНДӨ",faqTitle:"Көп берилүүчү суроолор",faqIntro:"Көпчүлүк кызыккан суроолорго жооптор.",q1:"ЖарТапта катталуу иштейби?",a1:"Жок. Азыр сайт маалыматтык режимде. Катталуу функциясы иштетилген эмес.",q2:"Жеке маалыматтар көрсөтүлөбү?",a2:"Азыр сайт жеке маалыматтарды чогултпайт жана жөнөтпөйт.",q3:"Келечектеги кызмат кимдерге арналат?",a3:"Келечекте ишке киргизилсе, кызмат чоңдор үчүн гана каралат.",q4:"Сайт кайсы тилдерде?",a4:"Кыргызча, орусча жана англисче тилдер бар.",
 footerText:"Ак нике — ишеним, урмат жана жаркын келечек.",footerNote:"Маалыматтык платформа. Катталуу функциялары иштетилген эмес.",backTop:"Жогору кайтуу ↑"
 },
 ru:{
-tagline:"БРАК — СВЕТЛОЕ БУДУЩЕЕ",navAbout:"О нас",navHow:"Наши ценности",navReviews:"Отзывы",navPrivacy:"Безопасность",navFaq:"Вопросы",
+tagline:"БРАК — СВЕТЛОЕ БУДУЩЕЕ",navAbout:"О нас",navHow:"Наши ценности",navReviews:"Отзывы",navFeedback:"Оставить отзыв",navPrivacy:"Безопасность",navFaq:"Вопросы",
 eyebrow:"ДОВЕРИЕ • УВАЖЕНИЕ • СЕМЬЯ",headline:"Брак — важный шаг к счастливому будущему",description:"Платформа, посвящённая семейным ценностям, честности и взаимному уважению.",aboutButton:"О нас →",safetyButton:"Безопасность",
 trust1Title:"Доверие",trust1Text:"Открытость и честность.",trust2Title:"Уважение",trust2Text:"Уважение выбора каждого человека.",trust3Title:"Семья",trust3Text:"Поддержка добрых ценностей.",
 aboutTitle:"О ЖарТап",aboutText:"ЖарТап — информационная платформа, посвящённая семейным ценностям, доверию, ответственности и взаимному уважению. Наша главная цель — распространять добрые намерения и правильные ценности.",
 valuesEyebrow:"НАШЕ НАПРАВЛЕНИЕ",valuesTitle:"Основные ценности ЖарТап",valuesIntro:"Доверие, уважение и ответственность — важные основы крепкой семьи.",value1Title:"Взаимное уважение",value1Text:"Уважение мнения, выбора и личных границ каждого человека.",value2Title:"Честность",value2Text:"Открытость и ответственное отношение.",value3Title:"Семейные ценности",value3Text:"Поддержка согласия, взаимопонимания и доброты.",
 principlesEyebrow:"ВАЖНЫЕ ПРИНЦИПЫ",howTitle:"Отношения, основанные на доверии",howIntro:"Правильные отношения начинаются с уважения, понимания и взаимного согласия.",step1Title:"Уважение",step1Text:"Уважение личного мнения и решений каждого человека.",step2Title:"Понимание",step2Text:"Принятие важных решений со свободного согласия обеих сторон.",step3Title:"Ответственность",step3Text:"Ответственное отношение к словам и поступкам.",
-reviewsEyebrow:"МНЕНИЕ ПОЛЬЗОВАТЕЛЕЙ",reviewsTitle:"Отзывы",reviewsIntro:"Здесь будут публиковаться отзывы о ЖарТап.",reviewsNote:"Пока нет проверенных отзывов, разрешённых к публикации. Раздел будет обновлён, когда появятся настоящие отзывы.",review1Title:"Ваше мнение важно",review1Text:"Это место предназначено для будущих настоящих отзывов проверенных пользователей.",review2Title:"Доверие и уважение",review2Text:"Мы ценим честность, конфиденциальность и выбор каждого человека.",review3Title:"ЖарТап",review3Text:"Брак, доверие и семейные ценности.",reviewLabel1:"Отзывы пока не принимаются",reviewLabel2:"Ценности ЖарТап",reviewLabel3:"Информационная платформа",
+reviewsEyebrow:"МНЕНИЕ ПОЛЬЗОВАТЕЛЕЙ",reviewsTitle:"Отзывы",reviewsIntro:"Здесь будут публиковаться отзывы о ЖарТап.",reviewsNote:"Пока нет проверенных отзывов, разрешённых к публикации. Раздел будет обновлён, когда появятся настоящие отзывы.",review1Title:"Ваше мнение важно",review1Text:"Это место предназначено для будущих настоящих отзывов проверенных пользователей.",review2Title:"Доверие и уважение",review2Text:"Мы ценим честность, конфиденциальность и выбор каждого человека.",review3Title:"ЖарТап",review3Text:"Брак, доверие и семейные ценности.",reviewLabel1:"Отзывы пока не опубликованы",reviewLabel2:"Ценности ЖарТап",reviewLabel3:"Информационная платформа",
+feedbackEyebrow:"ВАШЕ МНЕНИЕ ВАЖНО",feedbackTitle:"Оставить отзыв",feedbackText:"Предложения и мнения важны для улучшения ЖарТап. Этот раздел предназначен для информации о том, как в будущем можно будет оставить отзыв.",feedbackText2:"Ваше мнение ценно для нас. Возможность принимать настоящие отзывы будет рассмотрена только после подготовки условий безопасности и конфиденциальности.",feedbackNotice:"Примечание: Пока на сайте нет функции отправки отзывов или личных данных.",
 privacyEyebrow:"ДЛЯ НАС ВАЖНО",privacyTitle:"Конфиденциальность и безопасность",privacyText:"Личная информация каждого человека должна быть защищена. Телефонные номера и другие контактные данные нельзя публиковать без разрешения.",privacyText2:"Если сервис будет запущен в будущем, он будет предназначен только для взрослых. До запуска необходимо подготовить проверку возраста, защиту конфиденциальности и меры безопасности.",notice:"Примечание: сейчас ЖарТап является информационным сайтом. Регистрация, заполнение анкет и отправка личных данных не включены.",
 futureEyebrow:"ВЗГЛЯД В БУДУЩЕЕ",futureTitle:"Возможности будущего",futureIntro:"Новые функции будут рассматриваться только после определения условий сервиса и требований безопасности.",future1Title:"Личная информация",future1Text:"Использование только необходимых данных без лишней информации.",future2Title:"Защита данных",future2Text:"Конфиденциальность и безопасность информации должны быть на первом месте.",future3Title:"Три языка",future3Text:"Информация на кыргызском, русском и английском языках.",
 faqEyebrow:"О ЖАРТАП",faqTitle:"Часто задаваемые вопросы",faqIntro:"Ответы на популярные вопросы.",q1:"Работает ли регистрация на ЖарТап?",a1:"Нет. Сейчас сайт работает в информационном режиме. Регистрация не включена.",q2:"Будут ли видны личные данные?",a2:"Сейчас сайт не собирает и не отправляет личные данные.",q3:"Для кого предназначен будущий сервис?",a3:"Если сервис будет запущен, он будет предназначен только для взрослых.",q4:"На каких языках доступен сайт?",a4:"Доступны кыргызский, русский и английский языки.",
 footerText:"Брак — доверие, уважение и светлое будущее.",footerNote:"Информационная платформа. Регистрация не включена.",backTop:"Наверх ↑"
 },
 en:{
-tagline:"MARRIAGE — A BRIGHT FUTURE",navAbout:"About us",navHow:"Our values",navReviews:"Reviews",navPrivacy:"Safety",navFaq:"Questions",
+tagline:"MARRIAGE — A BRIGHT FUTURE",navAbout:"About us",navHow:"Our values",navReviews:"Reviews",navFeedback:"Leave feedback",navPrivacy:"Safety",navFaq:"Questions",
 eyebrow:"TRUST • RESPECT • FAMILY",headline:"Marriage — an important step towards a happy future",description:"A platform dedicated to family values, honesty, and mutual respect.",aboutButton:"About us →",safetyButton:"Safety",
 trust1Title:"Trust",trust1Text:"Openness and honesty.",trust2Title:"Respect",trust2Text:"Respect for everyone's choices.",trust3Title:"Family",trust3Text:"Supporting good values.",
 aboutTitle:"About Jartap",aboutText:"Jartap is an informational platform dedicated to family values, trust, responsibility, and mutual respect. Our main goal is to promote good intentions and positive values.",
 valuesEyebrow:"OUR DIRECTION",valuesTitle:"Jartap's core values",valuesIntro:"Trust, respect, and responsibility are important foundations of a strong family.",value1Title:"Mutual respect",value1Text:"Respecting every person's opinions, choices, and personal boundaries.",value2Title:"Honesty",value2Text:"Openness and responsible conduct.",value3Title:"Family values",value3Text:"Supporting harmony, understanding, and kindness.",
 principlesEyebrow:"IMPORTANT PRINCIPLES",howTitle:"Relationships built on trust",howIntro:"Healthy relationships begin with respect, understanding, and mutual consent.",step1Title:"Respect",step1Text:"Respecting every person's opinions and decisions.",step2Title:"Understanding",step2Text:"Making important decisions with the free consent of both parties.",step3Title:"Responsibility",step3Text:"Being responsible in words and actions.",
-reviewsEyebrow:"USER FEEDBACK",reviewsTitle:"Reviews",reviewsIntro:"Reviews about Jartap will be published here.",reviewsNote:"There are no verified reviews approved for publication yet. This section will be updated when genuine reviews become available.",review1Title:"Your opinion matters",review1Text:"This space is reserved for genuine reviews from verified users in the future.",review2Title:"Trust and respect",review2Text:"We value honesty, privacy, and every person's choices.",review3Title:"Jartap",review3Text:"Marriage, trust, and family values.",reviewLabel1:"Reviews are not being accepted yet",reviewLabel2:"Jartap values",reviewLabel3:"Informational platform",
+reviewsEyebrow:"USER FEEDBACK",reviewsTitle:"Reviews",reviewsIntro:"Reviews about Jartap will be published here.",reviewsNote:"There are no verified reviews approved for publication yet. This section will be updated when genuine reviews become available.",review1Title:"Your opinion matters",review1Text:"This space is reserved for genuine reviews from verified users in the future.",review2Title:"Trust and respect",review2Text:"We value honesty, privacy, and every person's choices.",review3Title:"Jartap",review3Text:"Marriage, trust, and family values.",reviewLabel1:"No reviews published yet",reviewLabel2:"Jartap values",reviewLabel3:"Informational platform",
+feedbackEyebrow:"YOUR OPINION MATTERS",feedbackTitle:"Leave feedback",feedbackText:"Suggestions and opinions are important for improving Jartap. This section provides information about how feedback may be shared in the future.",feedbackText2:"Your opinion matters to us. The possibility of accepting genuine feedback will be considered only after safety and privacy arrangements are prepared.",feedbackNotice:"Note: There is currently no function for sending feedback or personal information through this website.",
 privacyEyebrow:"IMPORTANT TO US",privacyTitle:"Privacy and safety",privacyText:"Every person's personal information should be protected. Phone numbers and other contact details must not be published without permission.",privacyText2:"If the service launches in the future, it will be intended for adults only. Age verification, privacy protection, and safety measures must be prepared before launch.",notice:"Note: Jartap is currently an informational website. Registration, profile creation, and personal data submission are not enabled.",
 futureEyebrow:"LOOKING AHEAD",futureTitle:"Future possibilities",futureIntro:"New features will only be considered after service terms and safety requirements have been established.",future1Title:"Personal information",future1Text:"Using only necessary information and avoiding unnecessary personal data.",future2Title:"Data protection",future2Text:"Privacy and information security must come first.",future3Title:"Three languages",future3Text:"Information in Kyrgyz, Russian, and English.",
 faqEyebrow:"ABOUT JARTAP",faqTitle:"Frequently asked questions",faqIntro:"Answers to common questions.",q1:"Is registration available on Jartap?",a1:"No. The website is currently informational. Registration is not enabled.",q2:"Will personal information be visible?",a2:"The website does not currently collect or send personal information.",q3:"Who is the future service intended for?",a3:"If launched in the future, the service will be intended for adults only.",q4:"Which languages does the website support?",a4:"Kyrgyz, Russian, and English are available.",
 footerText:"Marriage — trust, respect, and a bright future.",footerNote:"Informational platform. Registration is not enabled.",backTop:"Back to top ↑"
 }
 };
+
 function setLanguage(lang){
-const data=translations[lang];if(!data)return;
+const data=translations[lang];
+if(!data)return;
 document.documentElement.lang=lang;
-Object.entries(data).forEach(([id,value])=>{const element=document.getElementById(id);if(element)element.textContent=value});
+Object.entries(data).forEach(([id,value])=>{
+const element=document.getElementById(id);
+if(element)element.textContent=value;
+});
 document.querySelectorAll(".languages button").forEach(button=>{
 button.classList.toggle("active",button.textContent.trim().toLowerCase()===({ky:"kgz",ru:"ru",en:"eng"}[lang]));
 });
