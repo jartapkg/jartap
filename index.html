@@ -5,23 +5,29 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#002516">
+<meta name="description" content="ЖарТап — ак нике, урматтоо жана үй-бүлөлүк баалуулуктар жөнүндө маалыматтык платформа.">
 <title>ЖарТап — Ак нике</title>
 
 <style>
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 
+:root {
+  --green: #002516;
+  --green-light: #0b4329;
+  --gold: #f3c653;
+  --gold-light: #fff0b0;
+  --cream: #f5e8c3;
+}
+
 body {
   margin: 0;
   font-family: Georgia, "Times New Roman", serif;
-  background: #002516;
+  background: var(--green);
   color: #fff8df;
 }
 
-:root {
-  --gold: #f3c653;
-  --gold-light: #fff0b0;
-}
+a { color: inherit; }
 
 header {
   min-height: 100vh;
@@ -33,70 +39,72 @@ header {
     linear-gradient(120deg, #00180d, #063820 55%, #001b10);
 }
 
-header::before {
-  content: "";
-  position: absolute;
-  width: 350px;
-  height: 350px;
-  right: -120px;
-  top: 150px;
-  border-radius: 50%;
-  background: #d9a52d;
-  filter: blur(180px);
-  opacity: .16;
-  pointer-events: none;
-}
-
 .topbar {
-  position: relative;
-  z-index: 2;
   max-width: 1250px;
   margin: auto;
-  padding: 24px 30px;
+  padding: 20px 30px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 20px;
+  position: relative;
+  z-index: 5;
 }
 
 .brand {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 13px;
 }
 
 .brand-icon {
-  font-size: 55px;
+  font-size: 48px;
   filter: drop-shadow(0 0 13px #e8ad26);
 }
 
 .brand h1 {
   margin: 0;
   color: var(--gold);
-  font-size: 43px;
+  font-size: 38px;
   letter-spacing: 1px;
 }
 
 .brand p {
-  margin: 5px 0 0;
+  margin: 4px 0 0;
   color: var(--gold-light);
-  font-size: 16px;
+  font-size: 14px;
 }
+
+.nav {
+  display: flex;
+  gap: 22px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.nav a {
+  text-decoration: none;
+  color: #f8e8b9;
+  font-size: 15px;
+  transition: .2s;
+}
+
+.nav a:hover { color: var(--gold); }
 
 .languages {
   display: flex;
-  gap: 9px;
+  gap: 7px;
   flex-wrap: wrap;
 }
 
 .languages button {
   border: 1px solid #d9ad3e;
   border-radius: 25px;
-  padding: 11px 17px;
+  padding: 9px 13px;
   color: #ffe7a0;
   background: transparent;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 13px;
   transition: .25s;
 }
 
@@ -107,11 +115,9 @@ header::before {
 }
 
 .hero {
-  position: relative;
-  z-index: 1;
   max-width: 1250px;
   margin: auto;
-  padding: 55px 30px 25px;
+  padding: 55px 30px 35px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
@@ -138,50 +144,39 @@ header::before {
   height: 2px;
   margin: 25px 0;
   background: linear-gradient(
-    90deg,
-    transparent,
-    #f5c64c,
-    #fff1ae,
-    #f5c64c,
-    transparent
+    90deg, transparent, #f5c64c,
+    #fff1ae, #f5c64c, transparent
   );
 }
 
 .description {
   font-size: 21px;
   line-height: 1.7;
-  color: #f5e8c3;
+  color: var(--cream);
   font-style: italic;
 }
 
 .cta {
   display: inline-block;
   margin-top: 20px;
-  padding: 16px 32px;
+  padding: 15px 30px;
   border-radius: 35px;
   background: linear-gradient(120deg, #fff0a8, #e2aa28, #f6d46b);
   color: #16351d;
   text-decoration: none;
   font-weight: bold;
-  font-size: 17px;
+  font-size: 16px;
   box-shadow: 0 5px 25px #d9a52d55;
   transition: .25s;
 }
 
-.cta:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 30px #d9a52d88;
-}
-
-/* Алтын шакектердин сүрөтү */
+.cta:hover { transform: translateY(-3px); }
 
 .hero-art {
   min-height: 390px;
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
-  overflow: visible;
 }
 
 .rings {
@@ -197,19 +192,11 @@ header::before {
 }
 
 @keyframes ringGlow {
-  0%, 100% {
-    filter: drop-shadow(0 0 10px #e8b438);
-  }
-  50% {
-    filter: drop-shadow(0 0 27px #ffe58a);
-  }
+  0%, 100% { filter: drop-shadow(0 0 10px #e8b438); }
+  50% { filter: drop-shadow(0 0 27px #ffe58a); }
 }
 
-/* Артыкчылыктар */
-
 .features {
-  position: relative;
-  z-index: 2;
   max-width: 1150px;
   margin: 10px auto 55px;
   padding: 20px 25px;
@@ -226,7 +213,7 @@ header::before {
 
 .feature:last-child { border-right: 0; }
 
-.feature .symbol {
+.symbol {
   font-size: 39px;
   color: var(--gold);
   text-shadow: 0 0 12px #e8ad2677;
@@ -239,13 +226,71 @@ header::before {
 
 .feature p {
   line-height: 1.7;
-  color: #f5e8c3;
+  color: var(--cream);
 }
 
-/* Маалымат бөлүмдөрү */
+main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 10px 22px 55px;
+}
+
+.section-heading {
+  text-align: center;
+  margin: 65px 0 30px;
+}
+
+.section-heading h2 {
+  color: var(--gold);
+  font-size: clamp(27px, 4vw, 38px);
+  margin-bottom: 10px;
+}
+
+.section-heading p {
+  color: var(--cream);
+  line-height: 1.7;
+  max-width: 720px;
+  margin: auto;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.card {
+  border: 1px solid #98752c;
+  border-radius: 16px;
+  padding: 25px;
+  background: linear-gradient(145deg, #0b4329, #002516);
+  box-shadow: 0 8px 24px #0002;
+  transition: .25s;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: var(--gold);
+}
+
+.card-icon {
+  font-size: 34px;
+  margin-bottom: 12px;
+}
+
+.card h3 {
+  color: var(--gold);
+  font-size: 21px;
+  margin: 8px 0 12px;
+}
+
+.card p {
+  color: var(--cream);
+  line-height: 1.75;
+  margin: 0;
+}
 
 .info {
-  max-width: 950px;
   margin: 35px auto;
   padding: 32px;
   border: 1px solid #98752c;
@@ -258,23 +303,102 @@ header::before {
 .info h2 {
   color: var(--gold);
   font-size: 27px;
+  margin-top: 0;
 }
 
 .info p {
-  color: #f5e8c3;
+  color: var(--cream);
   font-size: 17px;
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.step {
+  text-align: center;
+  padding: 25px 18px;
+  border: 1px solid #98752c;
+  border-radius: 15px;
+  background: #07351f;
+}
+
+.step-number {
+  width: 43px;
+  height: 43px;
+  margin: 0 auto 15px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: #16351d;
+  background: var(--gold);
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.step h3 {
+  color: var(--gold);
+  font-size: 20px;
+}
+
+.step p {
+  color: var(--cream);
+  line-height: 1.7;
+}
+
+details {
+  border: 1px solid #98752c;
+  border-radius: 12px;
+  padding: 17px 20px;
+  margin: 12px 0;
+  background: #07351f;
+}
+
+summary {
+  color: var(--gold-light);
+  cursor: pointer;
+  font-size: 17px;
+  font-weight: bold;
+}
+
+details p {
+  color: var(--cream);
+  line-height: 1.7;
+  margin-bottom: 0;
+}
+
+.notice {
+  border-left: 4px solid var(--gold);
+  padding: 16px 20px;
+  margin-top: 22px;
+  background: #ffffff0b;
+  color: var(--cream);
+  line-height: 1.8;
 }
 
 footer {
   text-align: center;
-  padding: 30px 20px;
+  padding: 35px 20px;
   color: #f5d989;
   border-top: 1px solid #a8873d;
   background: #001c10;
   line-height: 1.8;
 }
 
-/* Телефон үчүн */
+footer a {
+  color: var(--gold-light);
+  text-decoration: none;
+}
+
+@media(max-width: 900px) {
+  .topbar {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .nav { justify-content: center; }
+}
 
 @media(max-width: 750px) {
   .topbar {
@@ -290,12 +414,12 @@ footer {
 
   .brand h1 { font-size: 36px; }
 
-  .languages { justify-content: center; }
-
-  .languages button {
-    padding: 9px 12px;
-    font-size: 13px;
+  .nav {
+    justify-content: center;
+    gap: 13px;
   }
+
+  .languages { justify-content: center; }
 
   .hero {
     grid-template-columns: 1fr;
@@ -311,8 +435,13 @@ footer {
 
   .gold-line { margin: 22px auto; }
 
-  .features {
+  .features,
+  .cards,
+  .steps {
     grid-template-columns: 1fr;
+  }
+
+  .features {
     margin-bottom: 30px;
   }
 
@@ -324,9 +453,10 @@ footer {
   .feature:last-child { border-bottom: 0; }
 
   .info {
-    margin: 20px;
     padding: 23px;
   }
+
+  .section-heading { margin-top: 45px; }
 }
 
 @media(prefers-reduced-motion: reduce) {
@@ -341,8 +471,7 @@ footer {
 
 <body>
 
-<header>
-
+<header id="home">
   <div class="topbar">
     <div class="brand">
       <div class="brand-icon">💍</div>
@@ -352,6 +481,13 @@ footer {
       </div>
     </div>
 
+    <nav class="nav">
+      <a href="#about" data-i18n="navAbout">Биз жөнүндө</a>
+      <a href="#how" data-i18n="navHow">Кантип иштейт?</a>
+      <a href="#privacy" data-i18n="navPrivacy">Коопсуздук</a>
+      <a href="#faq" data-i18n="navFaq">Суроолор</a>
+    </nav>
+
     <div class="languages">
       <button class="active" onclick="setLanguage('ky')">Кыргызча</button>
       <button onclick="setLanguage('ru')">Русский</button>
@@ -360,96 +496,221 @@ footer {
   </div>
 
   <div class="hero">
-
     <div class="hero-text">
       <h2>ЖарТап</h2>
-
-      <h3 id="headline">
-        Ак нике максатындагы таанышуу платформасы
-      </h3>
-
+      <h3 id="headline">Ак нике максатындагы таанышуу платформасы</h3>
       <div class="gold-line"></div>
-
       <p class="description" id="description">
-        Жакшы адамды табыңыз.
-        Бактылуу үй-бүлө куруңуз!
+        Жакшы адамды табыңыз. Бактылуу үй-бүлө куруңуз!
       </p>
-
-      <a class="cta" href="#about" id="cta">
-        Биз жөнүндө →
-      </a>
+      <a class="cta" href="#about" id="cta">Биз жөнүндө →</a>
     </div>
 
     <div class="hero-art">
       <div class="rings">
-        <img
-          src="rings.png"
-          alt="Чырмалышкан алтын нике шакектери">
+        <img src="rings.png" alt="Чырмалышкан алтын нике шакектери">
       </div>
     </div>
-
   </div>
 
   <div class="features">
-
     <div class="feature">
       <div class="symbol">♢</div>
       <h3 id="safeTitle">Коопсуздук</h3>
-      <p id="safeText">
-        Сиздин ишенимиңиз биз үчүн маанилүү.
-      </p>
+      <p id="safeText">Сиздин ишенимиңиз биз үчүн маанилүү.</p>
     </div>
-
     <div class="feature">
       <div class="symbol">♡</div>
       <h3 id="familyTitle">Үй-бүлөлүк баалуулуктар</h3>
-      <p id="familyText">
-        Биз ак никени жана урматтоону колдойбуз.
-      </p>
+      <p id="familyText">Биз ак никени жана урматтоону колдойбуз.</p>
     </div>
-
     <div class="feature">
       <div class="symbol">♧</div>
       <h3 id="adultTitle">Чоңдор үчүн</h3>
-      <p id="adultText">
-        Болочок кызмат чоңдор үчүн гана каралган.
+      <p id="adultText">Келечектеги кызмат чоңдор үчүн гана каралган.</p>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <section class="info" id="about">
+    <h2 id="aboutTitle">Биз жөнүндө</h2>
+    <p id="aboutText">
+      ЖарТап — үй-бүлөлүк баалуулуктарды, урматтоону жана
+      жоопкерчиликти даңазалаган маалыматтык платформа.
+    </p>
+  </section>
+
+  <section id="how">
+    <div class="section-heading">
+      <h2 id="howTitle">ЖарТап кандай иштейт?</h2>
+      <p id="howIntro">
+        Биздин максат — ишенимге, урматтоого жана өз ара макулдукка
+        негизделген мамилелердин маанисин түшүндүрүү.
       </p>
     </div>
 
-  </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-number">1</div>
+        <h3 id="step1Title">Маалымат</h3>
+        <p id="step1Text">
+          Колдонуучунун маалыматы купуялуулук талаптарына ылайык корголушу керек.
+        </p>
+      </div>
+      <div class="step">
+        <div class="step-number">2</div>
+        <h3 id="step2Title">Өз ара түшүнүшүү</h3>
+        <p id="step2Text">
+          Ар бир чечим эки тараптын тең эркин макулдугуна негизделиши керек.
+        </p>
+      </div>
+      <div class="step">
+        <div class="step-number">3</div>
+        <h3 id="step3Title">Ишеним</h3>
+        <p id="step3Text">
+          Жеке байланыш маалыматы уруксатсыз бөлүшүлбөшү керек.
+        </p>
+      </div>
+    </div>
+  </section>
 
-</header>
+  <section id="profile">
+    <div class="section-heading">
+      <h2 id="profileTitle">Келечектеги анкета тууралуу</h2>
+      <p id="profileIntro">
+        Келечекте анкета түзүү функциясы ишке кирсе,
+        маалыматтар түшүнүктүү жана ашыкча жеке маалымат талап кылбаган болушу керек.
+      </p>
+    </div>
 
-<section class="info" id="about">
-  <h2 id="aboutTitle">Биз жөнүндө</h2>
-  <p id="aboutText">
-    ЖарТап — үй-бүлөлүк баалуулуктарды,
-    урматтоону жана жоопкерчиликти даңазалаган
-    маалыматтык платформа.
-  </p>
-</section>
+    <div class="cards">
+      <div class="card">
+        <div class="card-icon">👤</div>
+        <h3 id="profileCard1Title">Өзү жөнүндө</h3>
+        <p id="profileCard1Text">
+          Өзү тууралуу кыскача маалымат жана кызыкчылыктар.
+        </p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🎓</div>
+        <h3 id="profileCard2Title">Ишмердүүлүгү</h3>
+        <p id="profileCard2Text">
+          Иштейт, жеке ишкер, студент, окуйт жана иштейт,
+          же азырынча иштебейт деген жалпы тандоо.
+        </p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🌿</div>
+        <h3 id="profileCard3Title">Максаттары</h3>
+        <p id="profileCard3Text">
+          Үй-бүлөлүк баалуулуктар жана келечекке болгон көз караш.
+        </p>
+      </div>
+    </div>
 
-<section class="info">
-  <h2 id="securityTitle">Коопсуздук</h2>
-  <p id="securityText">
-    Платформа чоңдорго гана арналган.
-    Катталуу функциялары ишенимдүү жаш текшерүү
-    жана коопсуздук чаралары даяр болгондо гана
-    каралат.
-  </p>
-</section>
+    <div class="notice" id="profileNotice">
+      Эскертүү: бул маалыматтык үлгү гана. Азыр анкета толтуруу,
+      катталуу жана маалымат жөнөтүү функциялары иштебейт.
+    </div>
+  </section>
+
+  <section class="info" id="privacy">
+    <h2 id="privacyTitle">Купуялык жана коопсуздук</h2>
+    <p id="privacyText">
+      Жеке маалыматтар адамдын уруксатысыз жарыяланбашы керек.
+      Телефон номери жана башка байланыш маалыматтары өзүнчө
+      макулдуксуз бөлүшүлбөшү керек.
+    </p>
+    <p id="privacyText2">
+      Келечектеги кызмат чоңдор үчүн гана каралат.
+      Аны ишке киргизүүдөн мурда жашты ишенимдүү текшерүү,
+      купуялыкты коргоо жана коопсуздук чаралары даяр болушу зарыл.
+    </p>
+  </section>
+
+  <section>
+    <div class="section-heading">
+      <h2 id="valuesTitle">ЖарТаптын негизги баалуулуктары</h2>
+      <p id="valuesIntro">Ишеним жана урматтоо — туура мамиленин негизи.</p>
+    </div>
+
+    <div class="cards">
+      <div class="card">
+        <div class="card-icon">🤝</div>
+        <h3 id="value1Title">Урматтоо</h3>
+        <p id="value1Text">Ар бир адамдын тандоосун жана жеке чек арасын сыйлоо.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🔒</div>
+        <h3 id="value2Title">Купуялык</h3>
+        <p id="value2Text">Жеке маалыматтарды жоопкерчилик менен коргоо.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">💛</div>
+        <h3 id="value3Title">Чынчылдык</h3>
+        <p id="value3Text">Ачык-айкын маалымат жана жоопкерчиликтүү мамиле.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="section-heading">
+      <h2 id="faqTitle">Көп берилүүчү суроолор</h2>
+      <p id="faqIntro">ЖарТап жөнүндө кыскача жооптор.</p>
+    </div>
+
+    <details>
+      <summary id="faqQ1">ЖарТапта катталуу азыр иштейби?</summary>
+      <p id="faqA1">
+        Жок. Азыр сайт маалыматтык режимде. Катталуу функциясы иштетилген эмес.
+      </p>
+    </details>
+
+    <details>
+      <summary id="faqQ2">Келечекте анкета акысыз болобу?</summary>
+      <p id="faqA2">
+        Акысыз анкета түзүү мүмкүнчүлүгү келечектеги кызматтын шарттары
+        жана коопсуздук талаптары аныкталганда каралат.
+      </p>
+    </details>
+
+    <details>
+      <summary id="faqQ3">Телефон номерлери көрүнүп калабы?</summary>
+      <p id="faqA3">
+        Жеке байланыш маалыматы уруксатсыз көрсөтүлбөшү керек.
+        Келечектеги кызматта бөлүшүү өзүнчө макулдук менен гана каралат.
+      </p>
+    </details>
+
+    <details>
+      <summary id="faqQ4">Сайт кайсы тилдерде болот?</summary>
+      <p id="faqA4">
+        Азыр кыргызча, орусча жана англисче тил тандоо бар.
+      </p>
+    </details>
+  </section>
+
+</main>
 
 <footer>
   <p id="footerText">
     ЖарТап — ак нике, урматтоо жана үй-бүлөлүк баалуулуктар.
   </p>
+  <p id="footerNote">Маалыматтык платформа. Катталуу функциялары азырынча жеткиликтүү эмес.</p>
   <p>© 2026 ЖарТап</p>
+  <a href="#home" id="backTop">Жогору кайтуу ↑</a>
 </footer>
 
 <script>
 const translations = {
   ky: {
     tagline: "Ак нике — жаркын келечек",
+    navAbout: "Биз жөнүндө",
+    navHow: "Кантип иштейт?",
+    navPrivacy: "Коопсуздук",
+    navFaq: "Суроолор",
     headline: "Ак нике максатындагы таанышуу платформасы",
     description: "Жакшы адамды табыңыз. Бактылуу үй-бүлө куруңуз!",
     cta: "Биз жөнүндө →",
@@ -458,16 +719,58 @@ const translations = {
     familyTitle: "Үй-бүлөлүк баалуулуктар",
     familyText: "Биз ак никени жана урматтоону колдойбуз.",
     adultTitle: "Чоңдор үчүн",
-    adultText: "Болочок кызмат чоңдор үчүн гана каралган.",
+    adultText: "Келечектеги кызмат чоңдор үчүн гана каралган.",
     aboutTitle: "Биз жөнүндө",
     aboutText: "ЖарТап — үй-бүлөлүк баалуулуктарды, урматтоону жана жоопкерчиликти даңазалаган маалыматтык платформа.",
-    securityTitle: "Коопсуздук",
-    securityText: "Платформа чоңдорго гана арналган. Катталуу функциялары ишенимдүү жаш текшерүү жана коопсуздук чаралары даяр болгондо гана каралат.",
-    footerText: "ЖарТап — ак нике, урматтоо жана үй-бүлөлүк баалуулуктар."
+    howTitle: "ЖарТап кандай иштейт?",
+    howIntro: "Биздин максат — ишенимге, урматтоого жана өз ара макулдукка негизделген мамилелердин маанисин түшүндүрүү.",
+    step1Title: "Маалымат",
+    step1Text: "Колдонуучунун маалыматы купуялуулук талаптарына ылайык корголушу керек.",
+    step2Title: "Өз ара түшүнүшүү",
+    step2Text: "Ар бир чечим эки тараптын тең эркин макулдугуна негизделиши керек.",
+    step3Title: "Ишеним",
+    step3Text: "Жеке байланыш маалыматы уруксатсыз бөлүшүлбөшү керек.",
+    profileTitle: "Келечектеги анкета тууралуу",
+    profileIntro: "Келечекте анкета түзүү функциясы ишке кирсе, маалыматтар түшүнүктүү жана ашыкча жеке маалымат талап кылбаган болушу керек.",
+    profileCard1Title: "Өзү жөнүндө",
+    profileCard1Text: "Өзү тууралуу кыскача маалымат жана кызыкчылыктар.",
+    profileCard2Title: "Ишмердүүлүгү",
+    profileCard2Text: "Иштейт, жеке ишкер, студент, окуйт жана иштейт, же азырынча иштебейт деген жалпы тандоо.",
+    profileCard3Title: "Максаттары",
+    profileCard3Text: "Үй-бүлөлүк баалуулуктар жана келечекке болгон көз караш.",
+    profileNotice: "Эскертүү: бул маалыматтык үлгү гана. Азыр анкета толтуруу, катталуу жана маалымат жөнөтүү функциялары иштебейт.",
+    privacyTitle: "Купуялык жана коопсуздук",
+    privacyText: "Жеке маалыматтар адамдын уруксатысыз жарыяланбашы керек. Телефон номери жана башка байланыш маалыматтары өзүнчө макулдуксуз бөлүшүлбөшү керек.",
+    privacyText2: "Келечектеги кызмат чоңдор үчүн гана каралат. Аны ишке киргизүүдөн мурда жашты ишенимдүү текшерүү, купуялыкты коргоо жана коопсуздук чаралары даяр болушу зарыл.",
+    valuesTitle: "ЖарТаптын негизги баалуулуктары",
+    valuesIntro: "Ишеним жана урматтоо — туура мамиленин негизи.",
+    value1Title: "Урматтоо",
+    value1Text: "Ар бир адамдын тандоосун жана жеке чек арасын сыйлоо.",
+    value2Title: "Купуялык",
+    value2Text: "Жеке маалыматтарды жоопкерчилик менен коргоо.",
+    value3Title: "Чынчылдык",
+    value3Text: "Ачык-айкын маалымат жана жоопкерчиликтүү мамиле.",
+    faqTitle: "Көп берилүүчү суроолор",
+    faqIntro: "ЖарТап жөнүндө кыскача жооптор.",
+    faqQ1: "ЖарТапта катталуу азыр иштейби?",
+    faqA1: "Жок. Азыр сайт маалыматтык режимде. Катталуу функциясы иштетилген эмес.",
+    faqQ2: "Келечекте анкета акысыз болобу?",
+    faqA2: "Акысыз анкета түзүү мүмкүнчүлүгү келечектеги кызматтын шарттары жана коопсуздук талаптары аныкталганда каралат.",
+    faqQ3: "Телефон номерлери көрүнүп калабы?",
+    faqA3: "Жеке байланыш маалыматы уруксатсыз көрсөтүлбөшү керек. Келечектеги кызматта бөлүшүү өзүнчө макулдук менен гана каралат.",
+    faqQ4: "Сайт кайсы тилдерде болот?",
+    faqA4: "Азыр кыргызча, орусча жана англисче тил тандоо бар.",
+    footerText: "ЖарТап — ак нике, урматтоо жана үй-бүлөлүк баалуулуктар.",
+    footerNote: "Маалыматтык платформа. Катталуу функциялары азырынча жеткиликтүү эмес.",
+    backTop: "Жогору кайтуу ↑"
   },
 
   ru: {
     tagline: "Брак — светлое будущее",
+    navAbout: "О нас",
+    navHow: "Как это работает?",
+    navPrivacy: "Безопасность",
+    navFaq: "Вопросы",
     headline: "Платформа знакомств с целью создания семьи",
     description: "Цените уважение. Создавайте счастливую семью!",
     cta: "О нас →",
@@ -479,13 +782,55 @@ const translations = {
     adultText: "Будущий сервис предназначен только для взрослых.",
     aboutTitle: "О нас",
     aboutText: "ЖарТап — информационная платформа, посвящённая семейным ценностям, уважению и ответственности.",
-    securityTitle: "Безопасность",
-    securityText: "Платформа предназначена только для взрослых. Функции регистрации будут рассматриваться после внедрения надежной проверки возраста и мер безопасности.",
-    footerText: "ЖарТап — брак, уважение и семейные ценности."
+    howTitle: "Как работает ЖарТап?",
+    howIntro: "Наша цель — рассказать о важности отношений, основанных на доверии, уважении и взаимном согласии.",
+    step1Title: "Информация",
+    step1Text: "Данные пользователей должны быть защищены в соответствии с требованиями конфиденциальности.",
+    step2Title: "Взаимопонимание",
+    step2Text: "Каждое решение должно основываться на свободном согласии обеих сторон.",
+    step3Title: "Доверие",
+    step3Text: "Личные контактные данные нельзя передавать без разрешения.",
+    profileTitle: "О будущей анкете",
+    profileIntro: "Если в будущем появится функция анкеты, вопросы должны быть понятными и не требовать лишних личных данных.",
+    profileCard1Title: "О себе",
+    profileCard1Text: "Краткая информация о себе и интересах.",
+    profileCard2Title: "Занятость",
+    profileCard2Text: "Работает, предприниматель, студент, совмещает учёбу и работу или пока не работает.",
+    profileCard3Title: "Цели",
+    profileCard3Text: "Семейные ценности и взгляды на будущее.",
+    profileNotice: "Примечание: это только информационный пример. Заполнение анкет, регистрация и отправка данных сейчас не работают.",
+    privacyTitle: "Конфиденциальность и безопасность",
+    privacyText: "Личные данные не должны публиковаться без разрешения человека. Телефон и другие контактные данные нельзя передавать без отдельного согласия.",
+    privacyText2: "Будущий сервис рассматривается только для взрослых. До его запуска необходимо подготовить надёжную проверку возраста, защиту конфиденциальности и меры безопасности.",
+    valuesTitle: "Основные ценности ЖарТап",
+    valuesIntro: "Доверие и уважение — основа правильных отношений.",
+    value1Title: "Уважение",
+    value1Text: "Уважение выбора и личных границ каждого человека.",
+    value2Title: "Конфиденциальность",
+    value2Text: "Ответственная защита личной информации.",
+    value3Title: "Честность",
+    value3Text: "Прозрачная информация и ответственное отношение.",
+    faqTitle: "Часто задаваемые вопросы",
+    faqIntro: "Краткие ответы о ЖарТап.",
+    faqQ1: "Регистрация на ЖарТап уже работает?",
+    faqA1: "Нет. Сейчас сайт работает в информационном режиме. Регистрация не включена.",
+    faqQ2: "Будет ли анкета бесплатной в будущем?",
+    faqA2: "Возможность бесплатного создания анкеты будет рассматриваться после определения условий сервиса и требований безопасности.",
+    faqQ3: "Будут ли видны номера телефонов?",
+    faqA3: "Личные контактные данные не должны показываться без разрешения. В будущем их передача может рассматриваться только с отдельного согласия.",
+    faqQ4: "На каких языках будет сайт?",
+    faqA4: "Сейчас доступны кыргызский, русский и английский языки.",
+    footerText: "ЖарТап — брак, уважение и семейные ценности.",
+    footerNote: "Информационная платформа. Регистрация пока недоступна.",
+    backTop: "Наверх ↑"
   },
 
   en: {
     tagline: "Marriage — a bright future",
+    navAbout: "About us",
+    navHow: "How it works",
+    navPrivacy: "Safety",
+    navFaq: "Questions",
     headline: "A platform focused on marriage and family",
     description: "Value respect. Build a happy family!",
     cta: "About us →",
@@ -497,9 +842,47 @@ const translations = {
     adultText: "The future service is intended for adults only.",
     aboutTitle: "About us",
     aboutText: "Jartap is an informational platform dedicated to family values, respect, and responsibility.",
-    securityTitle: "Safety",
-    securityText: "The platform is intended for adults only. Registration features will be considered after reliable age verification and safety measures are implemented.",
-    footerText: "Jartap — marriage, respect, and family values."
+    howTitle: "How does Jartap work?",
+    howIntro: "Our goal is to explain the importance of relationships based on trust, respect, and mutual consent.",
+    step1Title: "Information",
+    step1Text: "User information should be protected according to privacy requirements.",
+    step2Title: "Mutual understanding",
+    step2Text: "Every decision should be based on the free consent of both parties.",
+    step3Title: "Trust",
+    step3Text: "Personal contact information should never be shared without permission.",
+    profileTitle: "About the future profile",
+    profileIntro: "If profile creation becomes available in the future, questions should be clear and avoid requesting unnecessary personal information.",
+    profileCard1Title: "About yourself",
+    profileCard1Text: "A short introduction and personal interests.",
+    profileCard2Title: "Occupation",
+    profileCard2Text: "Employed, self-employed, student, studying and working, or currently not working.",
+    profileCard3Title: "Goals",
+    profileCard3Text: "Family values and views about the future.",
+    profileNotice: "Note: this is an informational example only. Profile creation, registration, and data submission are currently disabled.",
+    privacyTitle: "Privacy and safety",
+    privacyText: "Personal information should not be published without a person's permission. Phone numbers and other contact details should not be shared without separate consent.",
+    privacyText2: "The future service is intended for adults only. Reliable age verification, privacy protection, and safety measures must be prepared before launch.",
+    valuesTitle: "Jartap's core values",
+    valuesIntro: "Trust and respect are the foundation of healthy relationships.",
+    value1Title: "Respect",
+    value1Text: "Respecting every person's choices and personal boundaries.",
+    value2Title: "Privacy",
+    value2Text: "Protecting personal information responsibly.",
+    value3Title: "Honesty",
+    value3Text: "Clear information and responsible conduct.",
+    faqTitle: "Frequently asked questions",
+    faqIntro: "Quick answers about Jartap.",
+    faqQ1: "Is registration available on Jartap?",
+    faqA1: "No. The website is currently informational. Registration is not enabled.",
+    faqQ2: "Will profiles be free in the future?",
+    faqA2: "Free profile creation may be considered after service terms and safety requirements are established.",
+    faqQ3: "Will phone numbers be visible?",
+    faqA3: "Personal contact details should not be shown without permission. Any future sharing should require separate consent.",
+    faqQ4: "Which languages does the website support?",
+    faqA4: "Kyrgyz, Russian, and English are currently available.",
+    footerText: "Jartap — marriage, respect, and family values.",
+    footerNote: "Informational platform. Registration is not currently available.",
+    backTop: "Back to top ↑"
   }
 };
 
