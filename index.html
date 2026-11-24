@@ -808,8 +808,38 @@ function initializePage() {
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", initializePage);
 } else {
-  initializePage();
+ initializePage();
 }
+
+// Supabase маалыматтарын окуу
+const SUPABASE_URL = "https://syfthhzmawoeqzufqvyv.supabase.co";
+const SUPABASE_KEY = "ӨЗҮҢДҮН_PUBLISHABLE_KEY";
+
+async function loadDemoContent() {
+  try {
+    const response = await fetch(
+      `${SUPABASE_URL}/rest/v1/demo_content?select=*`,
+      {
+        headers: {
+          apikey: SUPABASE_KEY,
+          Authorization: `Bearer ${SUPABASE_KEY}`
+        }
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error(await response.text());
+    }
+
+    const data = await response.json();
+    console.log("ЖарТап маалыматтары:", data);
+  } catch (error) {
+    console.error("Supabase катасы:", error);
+  }
+}
+
+loadDemoContent();
+
 </script>
 
 </body>
