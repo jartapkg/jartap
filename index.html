@@ -736,6 +736,7 @@ const translations = {
 };
 
 
+
 let demoContentData = [];
 
 // Тил тандоо
@@ -768,45 +769,11 @@ function setLanguage(lang) {
   renderDemoContent(lang);
 }
 
-// Баракты баштоо
-function initializePage() {
-  const languageButtons = document.querySelectorAll(".languages button");
-
-  languageButtons.forEach(button => {
-    button.addEventListener("click", function () {
-      setLanguage(this.dataset.lang);
-    });
-  });
-
-  const menuButton = document.querySelector(".menu-toggle");
-  const navigation = document.querySelector(".nav-links");
-
-  if (menuButton && navigation) {
-    menuButton.addEventListener("click", () => {
-      navigation.classList.toggle("open");
-    });
-  }
-
-  const yearElement = document.getElementById("year");
-  if (yearElement) {
-    yearElement.textContent = new Date().getFullYear();
-  }
-
-  let savedLanguage = "ky";
-
-  try {
-    savedLanguage = localStorage.getItem("jartap-language") || "ky";
-  } catch (error) {
-    console.warn("Тилди окуу мүмкүн болгон жок:", error);
-  }
-
-  setLanguage(translations[savedLanguage] ? savedLanguage : "ky");
-}
-
 // Supabase туташуу
 const SUPABASE_URL = "https://syfthhzmawoeqzufqvyv.supabase.co";
-const SUPABASE_KEY = "БУЛ ЖЕРГЕ ӨЗҮҢДҮН PUBLISHABLE KEY АЧКЫЧЫҢДЫ КОЙ";
+const SUPABASE_KEY = "ӨЗҮҢДҮН_PUBLISHABLE_KEY";
 
+// Демо маалыматтарды көрсөтүү
 function renderDemoContent(lang) {
   const container = document.getElementById("demo-content-list");
   if (!container) return;
@@ -819,6 +786,7 @@ function renderDemoContent(lang) {
 
   languageData.forEach(item => {
     const article = document.createElement("article");
+
     article.style.cssText =
       "padding:18px;margin:12px 0;border-radius:12px;background:#f5f5f0;color:#183528;";
 
@@ -838,7 +806,7 @@ async function loadDemoContent() {
   try {
     if (
       !SUPABASE_KEY ||
-      SUPABASE_KEY === "БУЛ ЖЕРГЕ ӨЗҮҢДҮН PUBLISHABLE KEY АЧКЫЧЫҢДЫ КОЙ"
+      SUPABASE_KEY === "ӨЗҮҢДҮН_PUBLISHABLE_KEY"
     ) {
       throw new Error("Publishable Key киргизиле элек.");
     }
@@ -848,9 +816,9 @@ async function loadDemoContent() {
       {
         method: "GET",
         headers: {
-          apikey: SUPABASE_KEY,
-          Authorization: "Bearer " + SUPABASE_KEY,
-          Accept: "application/json"
+          "apikey": SUPABASE_KEY,
+          "Authorization": "Bearer " + SUPABASE_KEY,
+          "Accept": "application/json"
         }
       }
     );
@@ -863,32 +831,24 @@ async function loadDemoContent() {
 
     demoContentData = await response.json();
 
-    const currentLanguage = document.documentElement.lang || "ky";
-    renderDemoContent(currentLanguage);
+    renderDemoContent(document.documentElement.lang || "ky");
 
-    console.log(
-      "ЖарТап маалыматтары сайтка чыгарылды:",
-      demoContentData
-    );
+    console.log("ЖарТап маалыматтары:", demoContentData);
 
   } catch (error) {
     console.error("Supabase катасы:", error);
   }
 }
 
-// Баштапкы функцияларды иштетүү
-if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", initializePage);
-} else {
-  initializePage();
-}
+// Баракты баштоо
+function initializePage() {
+  const languageButtons = document.querySelectorAll(".languages button");
 
-loadDemoContent();
-
-</script>
-
-</body>
-</html>
+  languageButtons.forEach(button => {
+    button.addEventListener("click", function () {
+      setLanguage(this.dataset.lang);
+    });
+  });
 
   const menuToggle = document.getElementById("menuToggle");
   const mainNav = document.getElementById("mainNav");
@@ -926,73 +886,11 @@ loadDemoContent();
   setLanguage(translations[savedLanguage] ? savedLanguage : "ky");
 }
 
+// Иштетүү
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", initializePage);
 } else {
   initializePage();
-}
-
-// Supabase туташуу
-const SUPABASE_URL = "https://syfthhzmawoeqzufqvyv.supabase.co";
-const SUPABASE_KEY = "ӨЗҮҢДҮН_PUBLISHABLE_KEY";
-
-let demoContentData = [];
-
-function renderDemoContent(lang) {
-  const container = document.getElementById("demo-content-list");
-  if (!container) return;
-
-  container.replaceChildren();
-
-  const languageData = demoContentData.filter(item => item.language === lang);
-
-  languageData.forEach(item => {
-    const article = document.createElement("article");
-    article.style.cssText = "padding:18px;margin:12px 0;border-radius:12px;background:#f5f5f0;color:#183528;";
-
-    const heading = document.createElement("h3");
-    heading.textContent = item.title;
-
-    const paragraph = document.createElement("p");
-    paragraph.textContent = item.body;
-
-    article.append(heading, paragraph);
-    container.appendChild(article);
-  });
-}
-
-async function loadDemoContent() {
-  try {
-    if (!SUPABASE_KEY || SUPABASE_KEY === "sb_publishable_ACBEjb5ELWC9tqZHEng9IQ_NgYtC5Gc") {
-      throw new Error("Supabase Publishable Key киргизиле элек.");
-    }
-
-    const response = await fetch(
-      `${SUPABASE_URL}/rest/v1/demo_content?select=*`,
-      {
-        method: "GET",
-        headers: {
-          "apikey": SUPABASE_KEY,
-          "Authorization": "Bearer " + SUPABASE_KEY,
-          "Accept": "application/json"
-        }
-      }
-    );
-
-    if (!response.ok) {
-      throw new Error("Supabase API катасы: " + await response.text());
-    }
-
-    demoContentData = await response.json();
-
-    const currentLanguage = document.documentElement.lang || "ky";
-    renderDemoContent(currentLanguage);
-
-    console.log("ЖарТап маалыматтары сайтка чыгарылды:", demoContentData);
-
-  } catch (error) {
-    console.error("Supabase катасы:", error);
-  }
 }
 
 loadDemoContent();
