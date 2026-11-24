@@ -732,6 +732,7 @@ const translations = {
 
 function setLanguage(lang) {
   const dictionary = translations[lang];
+
   if (!dictionary) return;
 
   document.documentElement.lang = lang;
@@ -746,6 +747,7 @@ function setLanguage(lang) {
 
   document.querySelectorAll(".languages button").forEach(button => {
     const active = button.dataset.lang === lang;
+
     button.classList.toggle("active", active);
     button.setAttribute("aria-pressed", String(active));
   });
@@ -757,46 +759,57 @@ function setLanguage(lang) {
   }
 }
 
-document.querySelectorAll(".languages button").forEach(button => {
-  button.addEventListener("click", () => {
-    setLanguage(button.dataset.lang);
-  });
-});
+function initializePage() {
+  const languageButtons = document.querySelectorAll(".languages button");
 
-const menuToggle = document.getElementById("menuToggle");
-const mainNav = document.getElementById("mainNav");
-
-if (menuToggle && mainNav) {
-  menuToggle.addEventListener("click", () => {
-    const isOpen = mainNav.classList.toggle("open");
-    menuToggle.setAttribute("aria-expanded", String(isOpen));
-    menuToggle.textContent = isOpen ? "×" : "☰";
-  });
-
-  mainNav.querySelectorAll("a").forEach(link => {
-    link.addEventListener("click", () => {
-      mainNav.classList.remove("open");
-      menuToggle.setAttribute("aria-expanded", "false");
-      menuToggle.textContent = "☰";
+  languageButtons.forEach(button => {
+    button.addEventListener("click", function () {
+      setLanguage(this.dataset.lang);
     });
   });
+
+  const menuToggle = document.getElementById("menuToggle");
+  const mainNav = document.getElementById("mainNav");
+
+  if (menuToggle && mainNav) {
+    menuToggle.addEventListener("click", function () {
+      const isOpen = mainNav.classList.toggle("open");
+
+      menuToggle.setAttribute("aria-expanded", String(isOpen));
+      menuToggle.textContent = isOpen ? "×" : "☰";
+    });
+
+    mainNav.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", function () {
+        mainNav.classList.remove("open");
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.textContent = "☰";
+      });
+    });
+  }
+
+  const yearElement = document.getElementById("year");
+
+  if (yearElement) {
+    yearElement.textContent = new Date().getFullYear();
+  }
+
+  let savedLanguage = "ky";
+
+  try {
+    savedLanguage = localStorage.getItem("jartap-language") || "ky";
+  } catch (error) {
+    console.warn("Сакталган тилди окуу мүмкүн болгон жок:", error);
+  }
+
+  setLanguage(translations[savedLanguage] ? savedLanguage : "ky");
 }
 
-const yearElement = document.getElementById("year");
-
-if (yearElement) {
-  yearElement.textContent = new Date().getFullYear();
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initializePage);
+} else {
+  initializePage();
 }
-
-let savedLanguage = "ky";
-
-try {
-  savedLanguage = localStorage.getItem("jartap-language") || "ky";
-} catch (error) {
-  console.warn("Сакталган тилди окуу мүмкүн болгон жок:", error);
-}
-
-setLanguage(translations[savedLanguage] ? savedLanguage : "ky");
 </script>
 
 </body>
