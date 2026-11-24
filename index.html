@@ -643,6 +643,11 @@ footer p {
 </section>
 </main>
 
+<section id="demo-content" class="container" style="padding:40px 20px;">
+  <h2>Долбоор жөнүндө маалымат</h2>
+  <div id="demo-content-list"></div>
+</section>
+
 <footer>
   <div class="container">
     <div class="footer-logo">ЖарТап</div>
@@ -730,9 +735,9 @@ const translations = {
   }
 };
 
+
 function setLanguage(lang) {
   const dictionary = translations[lang];
-
   if (!dictionary) return;
 
   document.documentElement.lang = lang;
@@ -747,7 +752,6 @@ function setLanguage(lang) {
 
   document.querySelectorAll(".languages button").forEach(button => {
     const active = button.dataset.lang === lang;
-
     button.classList.toggle("active", active);
     button.setAttribute("aria-pressed", String(active));
   });
@@ -757,6 +761,8 @@ function setLanguage(lang) {
   } catch (error) {
     console.warn("Тилди сактоо мүмкүн болгон жок:", error);
   }
+
+  renderDemoContent(lang);
 }
 
 function initializePage() {
@@ -774,7 +780,6 @@ function initializePage() {
   if (menuToggle && mainNav) {
     menuToggle.addEventListener("click", function () {
       const isOpen = mainNav.classList.toggle("open");
-
       menuToggle.setAttribute("aria-expanded", String(isOpen));
       menuToggle.textContent = isOpen ? "×" : "☰";
     });
@@ -808,13 +813,37 @@ function initializePage() {
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", initializePage);
 } else {
-
-initializePage();
+  initializePage();
 }
 
-// Supabase маалыматтарын окуу
+// Supabase туташуу
 const SUPABASE_URL = "https://syfthhzmawoeqzufqvyv.supabase.co";
-const SUPABASE_KEY = "sb_publishable_ACBEjb5ELWC9tqZHEng9IQ_NgYtC5Gc";
+const SUPABASE_KEY = "ӨЗҮҢДҮН_PUBLISHABLE_KEY";
+
+let demoContentData = [];
+
+function renderDemoContent(lang) {
+  const container = document.getElementById("demo-content-list");
+  if (!container) return;
+
+  container.replaceChildren();
+
+  const languageData = demoContentData.filter(item => item.language === lang);
+
+  languageData.forEach(item => {
+    const article = document.createElement("article");
+    article.style.cssText = "padding:18px;margin:12px 0;border-radius:12px;background:#f5f5f0;color:#183528;";
+
+    const heading = document.createElement("h3");
+    heading.textContent = item.title;
+
+    const paragraph = document.createElement("p");
+    paragraph.textContent = item.body;
+
+    article.append(heading, paragraph);
+    container.appendChild(article);
+  });
+}
 
 async function loadDemoContent() {
   try {
@@ -838,8 +867,12 @@ async function loadDemoContent() {
       throw new Error("Supabase API катасы: " + await response.text());
     }
 
-    const data = await response.json();
-    console.log("ЖарТап маалыматтары:", data);
+    demoContentData = await response.json();
+
+    const currentLanguage = document.documentElement.lang || "ky";
+    renderDemoContent(currentLanguage);
+
+    console.log("ЖарТап маалыматтары сайтка чыгарылды:", demoContentData);
 
   } catch (error) {
     console.error("Supabase катасы:", error);
