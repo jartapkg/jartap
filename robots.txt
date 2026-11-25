@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://jartap.vercel.app/sitemap.xml
