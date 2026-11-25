@@ -67,44 +67,40 @@
   margin: 0;
   font-size: 15px;
 }
-</style>
+<style>
+:root {
+  --green: #031c12;
+  --green2: #08291c;
+  --green3: #103b29;
+  --gold: #d6ad55;
+  --gold-light: #edcc7a;
+  --white: #ffffff;
+  --muted: #f0f0eb;
+  --border: rgba(214,173,85,.28);
+}
 
-* { box-sizing: border-box; }
+/* Supabase демо карточкалары */
+.demo-content-card {
+  padding: 28px;
+  margin: 12px 0;
+  border-radius: 16px;
+  background: linear-gradient(145deg, #0c3020, #062116);
+  border: 1px solid rgba(214,173,85,.28);
+  color: #ffffff;
+}
 
-html { scroll-behavior: smooth; }
+.demo-content-card h3 {
+  color: #edcc7a;
+  margin-top: 0;
+}
 
-body {
+.demo-content-card p {
+  color: #ffffff;
   margin: 0;
-  font-family: Georgia, "Times New Roman", serif;
-  background: var(--green);
-  color: var(--white);
-  line-height: 1.7;
+  font-size: 15px;
 }
 
-a { color: inherit; text-decoration: none; }
-button { font: inherit; }
-
-.container {
-  width: min(1120px, 92%);
-  margin: auto;
-}
-
-header {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background: rgba(3,28,18,.97);
-  border-bottom: 1px solid var(--border);
-  backdrop-filter: blur(12px);
-}
-
-.header-inner {
-  min-height: 76px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-}
+/* Мындан кийин сенин калган CSS коддоруң уланат */
 
 .logo {
   color: var(--gold-light);
