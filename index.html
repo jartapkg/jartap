@@ -365,10 +365,23 @@
       section { padding: 60px 0; }
 
       .container {
-        width: min(100% - 30px, 1120px);
-      }
-    }
-  </style>
+  width: min(100% - 30px, 1120px);
+}
+
+/* Телефондогу башкы аталышты оңдоо */
+.hero h1 {
+  font-size: clamp(27px, 7vw, 34px);
+  line-height: 1.2;
+  max-width: 100%;
+  overflow-wrap: break-word;
+}
+
+.hero p {
+  font-size: 16px;
+  line-height: 1.6;
+}
+}
+</style>
 </head>
 
 <body>
@@ -388,7 +401,6 @@
       <a href="#demo-content" data-i18n="navDemo">Маалымат</a>
       <a href="#faq" data-i18n="navFaq">Суроолор</a>
     </nav>
-
     <div class="language-switch">
       <button type="button" data-lang="ky" class="active">KY</button>
       <button type="button" data-lang="ru">RU</button>
