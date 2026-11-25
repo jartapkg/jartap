@@ -34,6 +34,7 @@
 <meta property="og:image:width" content="1536">
 <meta property="og:image:height" content="1024">
 <meta property="og:image:alt" content="ЖарТап — алтын түстөгү нике шакектери">
+
 <style>
 :root {
   --green: #031c12;
@@ -45,6 +46,28 @@
   --muted: #f0f0eb;
   --border: rgba(214,173,85,.28);
 }
+
+/* Supabase демо карточкалары */
+.demo-content-card {
+  padding: 28px;
+  margin: 12px 0;
+  border-radius: 16px;
+  background: linear-gradient(145deg, #0c3020, #062116);
+  border: 1px solid rgba(214,173,85,.28);
+  color: #ffffff;
+}
+
+.demo-content-card h3 {
+  color: #edcc7a;
+  margin-top: 0;
+}
+
+.demo-content-card p {
+  color: #ffffff;
+  margin: 0;
+  font-size: 15px;
+}
+</style>
 
 * { box-sizing: border-box; }
 
@@ -295,6 +318,25 @@ section {
   color: var(--white);
   margin: 0;
   font-size: 15px;
+}
+
+/* Supabase аркылуу келген үч маалымат карточкасы */
+.demo-content-card {
+  padding: 28px;
+  margin: 12px 0;
+  border-radius: 16px;
+  background: linear-gradient(145deg, #0c3020, #062116);
+  border: 1px solid rgba(214,173,85,.28);
+  color: #ffffff;
+}
+
+.demo-content-card h3 {
+  color: #edcc7a;
+}
+
+.demo-content-card p {
+  color: #ffffff;
+  margin: 0;
 }
 
 .steps {
@@ -768,7 +810,12 @@ const translations = {
 
 
 
+
 let demoContentData = [];
+
+// Supabase туташуу
+const SUPABASE_URL = "https://syfthhzmawoeqzufqvyv.supabase.co";
+const SUPABASE_KEY = "ӨЗҮҢДҮН_PUBLISHABLE_KEY";
 
 // Тил тандоо
 function setLanguage(lang) {
@@ -797,12 +844,9 @@ function setLanguage(lang) {
     console.warn("Тилди сактоо мүмкүн болгон жок:", error);
   }
 
+  // Тандалган тилдеги демо маалыматтарды көрсөтүү
   renderDemoContent(lang);
 }
-
-// Supabase туташуу
-const SUPABASE_URL = "https://syfthhzmawoeqzufqvyv.supabase.co";
-const SUPABASE_KEY = "sb_publishable_ACBEjb5ELWC9tqZHEng9IQ_NgYtC5Gc";
 
 // Демо маалыматтарды көрсөтүү
 function renderDemoContent(lang) {
@@ -818,8 +862,8 @@ function renderDemoContent(lang) {
   languageData.forEach(item => {
     const article = document.createElement("article");
 
-   article.style.cssText =
-  "padding:28px;margin:12px 0;border-radius:16px;background:linear-gradient(145deg,#0c3020,#062116);border:1px solid rgba(214,173,85,.28);color:#ffffff;";
+    article.className = "demo-content-card";
+
     const heading = document.createElement("h3");
     heading.textContent = item.title;
 
@@ -924,7 +968,6 @@ if (document.readyState === "loading") {
 }
 
 loadDemoContent();
-
 </script>
 
 </body>
